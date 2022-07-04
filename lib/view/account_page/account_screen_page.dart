@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:menskart/controller/login_controller/authentication_controller.dart';
 import 'package:menskart/view/account_page/widgets/account_center_section.dart';
 import 'package:menskart/view/account_page/widgets/user_details_container.dart';
 import 'package:menskart/view/core/color_constants.dart';
@@ -8,7 +9,8 @@ import 'package:menskart/view/login_page/login_screen.dart';
 import 'package:menskart/view/widgets/heading_text.dart';
 
 class AccountScreen extends StatelessWidget {
-  const AccountScreen({Key? key}) : super(key: key);
+   AccountScreen({Key? key}) : super(key: key);
+  final authController = Get.put(AuthenticationController());
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class AccountScreen extends StatelessWidget {
             ),
             title: const Text('Logout'),
             onTap: () {
-              Get.offAll(LoginScreen());
+              authController.logout();
             },
           )
         ],

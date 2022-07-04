@@ -7,7 +7,7 @@ import 'package:menskart/view/core/border_radius.dart';
 class LoginButton extends StatelessWidget {
   final String buttonText;
 
-  final onPressed;
+  final VoidCallback onPressed;
   final Color? bgColor;
   final Color? textColor;
 
@@ -22,9 +22,7 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Get.offAll(onPressed);
-      },
+      onTap: onPressed,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
         child: Container(

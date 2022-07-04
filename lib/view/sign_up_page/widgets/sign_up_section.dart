@@ -101,7 +101,7 @@ class SignUpSection extends StatelessWidget {
             kHeight10,
             LoginButton(
               buttonText: 'Sign Up',
-              onPressed: MainPage(),
+              onPressed: (){},
               bgColor: kLoginBlue,
               textColor: kWhite,
             ),

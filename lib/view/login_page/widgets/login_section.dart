@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:menskart/controller/login_controller/authentication_controller.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
 import 'package:menskart/view/login_page/widgets/login_leading_text.dart';
@@ -14,6 +15,7 @@ class LoginSection extends StatelessWidget {
   }) : super(key: key);
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final loginController = Get.put(AuthenticationController());
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +109,11 @@ class LoginSection extends StatelessWidget {
             kHeight20,
             LoginButton(
               buttonText: 'Sign In',
-              onPressed: '',
+             
+              onPressed: () {
+              loginController.login(_emailController.text, _passwordController.text);
+               
+              },
               bgColor: kLoginBlue,
               textColor: kWhite,
             ),
