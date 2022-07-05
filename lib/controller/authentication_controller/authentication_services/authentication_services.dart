@@ -1,28 +1,30 @@
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
 class AuthenicationApiCalls {
+
   final _dio = Dio(BaseOptions(
     baseUrl: 'http://52.73.88.3/',
     responseType: ResponseType.plain,
   ));
+
   Future<Response<dynamic>?> loginCheck(Map<String, dynamic> login) async {
-    // log('message: $login');
+    
 
     try {
+
       var response = await _dio.post(
         'login',
-        data: login,
-        // {"email": "viswajith@gmail.com", "password": "12345"},
+        data: jsonEncode(login),
       );
-      // var response = await _dio.get(
-      //   'http://52.73.88.3/logout',
-      // );
+      log(response.data);
 
       return response;
+
     } on DioError catch (e) {
       log(e.message);
       rethrow;
@@ -32,10 +34,24 @@ class AuthenicationApiCalls {
     }
   }
 
+
+ Future<Response<dynamic>?> signupCheck(Map<String, dynamic> signup)async{
+try {
+  log( 'signup: $signup');
+  var response = await _dio.post('signup',data: jsonEncode(signup));
+  log('========${response.data}============');
+  return response;
+} catch (e) {
+  rethrow;
+}
+  }
+
   logoutCheck() {
     try {
       var response = _dio.get('logout');
       return response;
-    } catch (e) {}
+    } catch (e) {
+      rethrow;
+    }
   }
 }

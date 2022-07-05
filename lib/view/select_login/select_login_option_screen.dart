@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:menskart/main.dart';
 import 'package:menskart/view/core/color_constants.dart';
-import 'package:menskart/view/main_page/main_page.dart';
 import 'package:menskart/view/select_login/widgets/select_login_option_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SelectLoginOption extends StatelessWidget {
   const SelectLoginOption ({Key? key}) : super(key: key);

@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:menskart/controller/authentication_controller/authentication_controller.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
 import 'package:menskart/view/login_page/login_screen.dart';
-import 'package:menskart/view/main_page/main_page.dart';
 import 'package:menskart/view/widgets/form_field.dart';
 import 'package:menskart/view/widgets/login_button.dart';
 
@@ -14,6 +14,7 @@ class SignUpSection extends StatelessWidget {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final _mobileController = TextEditingController();
+  final authController = Get.put(AuthenticationController());
    SignUpSection({
     Key? key,
   }) : super(key: key);
@@ -101,7 +102,10 @@ class SignUpSection extends StatelessWidget {
             kHeight10,
             LoginButton(
               buttonText: 'Sign Up',
-              onPressed: (){},
+              onPressed: (){
+                authController.signup(_nameContoller.text, _emailController.text, _passwordController.text,_confirmPasswordController.text, _mobileController.text);
+              
+              },
               bgColor: kLoginBlue,
               textColor: kWhite,
             ),
