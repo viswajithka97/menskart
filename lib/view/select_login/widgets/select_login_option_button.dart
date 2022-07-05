@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/view/core/color_constants.dart';
 
-class SplashScreenButton extends StatelessWidget {
+class SelectoginScreenButton extends StatelessWidget {
   final Color backgroundColor;
   final Color textColor;
   final String buttonText;
 final Widget buttonPress;
-  const SplashScreenButton({
+  const SelectoginScreenButton({
     Key? key,
     required this.backgroundColor,required this.textColor,required this.buttonText,required this.buttonPress
   }) : super(key: key);

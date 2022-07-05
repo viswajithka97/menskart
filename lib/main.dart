@@ -3,6 +3,8 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:menskart/view/splash_screen/splash_screen.dart';
 
+const  loginKey = 'login';
+
 void main() {
   runApp(const MyApp());
 }
@@ -15,7 +17,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
       debugShowCheckedModeBanner: false,
-      home: const ScreenSplash(),
+      home: const SplashScreen(),
     );
   }
+  
 }

@@ -1,24 +1,28 @@
-import 'package:flutter/material.dart';
-import 'package:menskart/view/core/color_constants.dart';
-import 'package:menskart/view/splash_screen/widgets/splash_screen_widget.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:menskart/main.dart';
+import 'package:menskart/view/main_page/main_page.dart';
+import 'package:menskart/view/select_login/select_login_option_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ScreenSplash extends StatelessWidget {
-  const ScreenSplash({Key? key}) : super(key: key);
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/images/splash.jpg'),
-              fit: BoxFit.cover,
-              filterQuality: FilterQuality.high)),
-      child: const Scaffold(
-        backgroundColor: kTransparent,
-        body: SafeArea(
-          child: SplashScreenWidget(),
-        ),
-      ),
-    );
+    checkUserLogin();
+    return Container();
+  }
+
+  Future<void> checkUserLogin() async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    final userSignIn = sharedPrefs.getBool(loginKey);
+    if (userSignIn == null || userSignIn == false) {
+      Get.offAll(() => const SelectLoginOption());
+    } else {
+      Get.offAll(() => MainPage());
+    }
   }
 }
