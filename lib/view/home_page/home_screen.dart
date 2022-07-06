@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
           child: ListView(
         children: [
-          TopSectionCarousel(),
+          const TopSectionCarousel(),
           const DealOfTheDaySection(),
           CategorySection(),
           const CouponSection(),

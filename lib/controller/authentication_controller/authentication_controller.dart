@@ -29,7 +29,7 @@ class AuthenticationController extends GetxController {
       } else {
         final data = loginModelFromJson(response.data);
         if (data.response.status) {
-          Get.off(MainPage());
+          Get.offAll(MainPage());
           Get.snackbar('Welcome ${data.response.user.name}', 'Login Successful',
               snackPosition: SnackPosition.BOTTOM,
               backgroundColor: Colors.green,
@@ -44,7 +44,6 @@ class AuthenticationController extends GetxController {
         }
       }
     } catch (e) {
-
       Get.snackbar(
           'Error', 'Email or Password is incorrect Please cheack and try again',
           snackPosition: SnackPosition.BOTTOM,
