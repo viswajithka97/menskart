@@ -20,7 +20,9 @@ class ProductDetailMiddleSection extends StatelessWidget {
           child: Align(
               alignment: Alignment.centerRight,
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    print(category.id);
+                  },
                   icon: const Icon(
                     Icons.favorite,
                     color: Colors.red,

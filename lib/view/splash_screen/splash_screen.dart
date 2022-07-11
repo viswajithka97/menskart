@@ -16,7 +16,9 @@ class SplashScreen extends StatelessWidget {
 
   Future<void> checkUserLogin() async {
     final sharedPrefs = await SharedPreferences.getInstance();
-    final userSignIn = sharedPrefs.getBool(loginKey);
+    final userSignIn = sharedPrefs.getString(loginKey);
+    print(userSignIn);
+
     if (userSignIn == null || userSignIn == false) {
       Get.offAll(() => const SelectLoginOption());
     } else {

@@ -16,20 +16,11 @@ class AuthenticationController extends GetxController {
     try {
       final response = await AuthenicationApiCalls().loginCheck(login);
 
-      if (response!.data == null) {
-        Get.snackbar('Error',
-            'Email or Password is incorrect Please cheack and try again',
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
-            borderRadius: 10,
-            borderColor: Colors.red,
-            borderWidth: 2,
-            duration: const Duration(seconds: 3));
-      } else {
+      if (response!.statusCode == 200 || response.statusCode == 201) {
+        log('data undu.....');
         final data = loginModelFromJson(response.data);
-        if (data.response.status) {
-          Get.offAll(MainPage());
+        if (data.response.status == true && data.response.user.id.isNotEmpty) {
+          print('user id :${data.response.user.id}');
           Get.snackbar('Welcome ${data.response.user.name}', 'Login Successful',
               snackPosition: SnackPosition.BOTTOM,
               backgroundColor: Colors.green,
@@ -39,8 +30,20 @@ class AuthenticationController extends GetxController {
               borderWidth: 2,
               duration: const Duration(seconds: 3));
           final sharedPrefs = await SharedPreferences.getInstance();
-          sharedPrefs.setBool(loginKey, true);
+          sharedPrefs.setString(loginKey, data.response.user.id);
+          print(sharedPrefs.getString(loginKey));
           log('==============user login success==================');
+          Get.offAll(MainPage());
+        } else {
+          Get.snackbar('Error',
+              'Email or Password is incorrect Please cheack and try again',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: Colors.white,
+              borderRadius: 10,
+              borderColor: Colors.red,
+              borderWidth: 2,
+              duration: const Duration(seconds: 3));
         }
       }
     } catch (e) {
@@ -53,6 +56,7 @@ class AuthenticationController extends GetxController {
           borderColor: Colors.red,
           borderWidth: 2,
           duration: const Duration(seconds: 3));
+      log(e.toString());
     }
   }
 
@@ -64,50 +68,49 @@ class AuthenticationController extends GetxController {
       "conformPassword": confirmPassword,
       "phoneNumber": phoneNumber
     };
+    try {
+      final response = await AuthenicationApiCalls().signupCheck(signup);
+      if (response!.statusCode == 200 || response.statusCode == 201) {
+        final data = signUpModelFromJson(response.data);
 
-    final response = await AuthenicationApiCalls().signupCheck(signup);
-
-    final data = signUpModelFromJson(response!.data);
-
-    if (data.response.acknowledged) {
-      log('---------signup success--------');
-      Get.off(() => LoginScreen());
-      Get.snackbar('Signup Successfull', 'User has been created',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-          borderRadius: 10,
-          borderColor: Colors.green,
-          borderWidth: 2,
-          duration: const Duration(seconds: 3));
+        if (data.response.acknowledged) {
+          log('---------signup success--------');
+          Get.off(() => LoginScreen());
+          Get.snackbar('Signup Successfull', 'User has been created',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.green,
+              colorText: Colors.white,
+              borderRadius: 10,
+              borderColor: Colors.green,
+              borderWidth: 2,
+              duration: const Duration(seconds: 3));
+        }
+      }
+    } catch (e) {
+      log(e.toString());
     }
   }
 
   logout() async {
-    log('==================logout called==================');
+    try {
+      final response = await AuthenicationApiCalls().logoutCheck();
 
-    final response = await AuthenicationApiCalls().logoutCheck();
-
-    if (response != null) {
-      Get.off(() => LoginScreen());
-      Get.snackbar('Logout Successful', 'User has been logged out successfully',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-          borderRadius: 10,
-          borderColor: Colors.green,
-          borderWidth: 2,
-          duration: const Duration(seconds: 3));
-      final sharedPrefs = await SharedPreferences.getInstance();
-      sharedPrefs.clear();
+      if (response!.statusCode == 200 || response.statusCode == 201) {
+        Get.off(() => LoginScreen());
+        Get.snackbar(
+            'Logout Successful', 'User has been logged out successfully',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+            borderRadius: 10,
+            borderColor: Colors.green,
+            borderWidth: 2,
+            duration: const Duration(seconds: 3));
+        final sharedPrefs = await SharedPreferences.getInstance();
+        sharedPrefs.clear();
+      }
+    } catch (e) {
+      log(e.toString());
     }
   }
 }
-    
-    
-    // }
-    //  catch (e) {
-    //   print('--------------------$e===============');
-    // }
-
-  

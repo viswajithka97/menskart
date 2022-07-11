@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:menskart/model/home_page/home_page_model.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/home_page/category_select_page/category_result_section.dart';
 import 'package:menskart/view/widgets/appbar_widget.dart';
@@ -20,9 +19,9 @@ class CategorySelect extends StatelessWidget {
           ),
         ],
       ),
-      child:const Scaffold(
+      child: const Scaffold(
         backgroundColor: kTransparent,
-        appBar:  PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size.fromHeight(50),
           child: AppBarWidget(),
         ),

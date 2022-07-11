@@ -28,7 +28,7 @@ class AuthenicationApiCalls {
     }
   }
 
-  Future<Response<dynamic>?> signupCheck(Map<String, dynamic> signup) async {
+  Future<Response<dynamic>?>  signupCheck(Map<String, dynamic> signup) async {
     try {
       log('signup: $signup');
       var response = await _dio.post('signup', data: jsonEncode(signup));
@@ -39,7 +39,7 @@ class AuthenicationApiCalls {
     }
   }
 
-  logoutCheck() {
+  Future<Response<dynamic>?> logoutCheck() {
     try {
       var response = _dio.get('logout');
       return response;

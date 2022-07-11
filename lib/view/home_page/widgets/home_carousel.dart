@@ -31,7 +31,7 @@ class TopSectionCarousel extends StatelessWidget {
                 borderRadius: kBRadius10,
               ),
               width: double.infinity,
-              height: 200,
+              height: 150,
               child: CarouselSlider.builder(
                   options: CarouselOptions(
                     height: 200.0,
@@ -59,6 +59,12 @@ class TopSectionCarousel extends StatelessWidget {
                             fit: BoxFit.fill,
                             alignment: Alignment.center),
                       ),
+                      // child: Image(
+                      //   height: 600,
+                      //   image: NetworkImage(
+                      //       'http://menscart.shop/banner-images/${controller.banner![itemindex].id}.jpg'),
+                      //   fit: BoxFit.cover,
+                      // ),
                     );
                   }),
             );

@@ -3,7 +3,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:menskart/view/splash_screen/splash_screen.dart';
 
-const  loginKey = 'login';
+const String loginKey ='' ;
 
 void main() {
   runApp(const MyApp());

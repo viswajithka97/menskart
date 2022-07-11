@@ -16,6 +16,7 @@ class LoginSection extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final loginController = Get.put(AuthenticationController());
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -65,16 +66,37 @@ class LoginSection extends StatelessWidget {
               ],
             ),
             kHeight20,
-            const LoginLeadingText(leadingText: 'Email'),
-            LoginFormField(
-              formfieldtext: 'mail@website.com',
-              controller: _emailController,
-            ),
-            kHeight20,
-            const LoginLeadingText(leadingText: 'Password'),
-            LoginFormField(
-              formfieldtext: 'Password',
-              controller: _passwordController,
+            Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const LoginLeadingText(leadingText: 'Email'),
+                  LoginFormField(
+                    formfieldtext: 'mail@website.com',
+                    controller: _emailController,
+                    validator: (value) {
+                      if (value.toString().isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      return null;
+                    },
+                  ),
+                  kHeight20,
+                  const LoginLeadingText(leadingText: 'Password'),
+                  LoginFormField(
+                    formfieldtext: 'Password',
+                    controller: _passwordController,
+                    obsureText: true,
+                    validator: (value) {
+                      if (value.toString().isEmpty) {
+                        return 'Please enter password';
+                      }
+                      return null;
+                    },
+                  ),
+                ],
+              ),
             ),
             kHeight10,
             Padding(
@@ -109,10 +131,21 @@ class LoginSection extends StatelessWidget {
             kHeight20,
             LoginButton(
               buttonText: 'Sign In',
-             
               onPressed: () {
-              loginController.login(_emailController.text, _passwordController.text);
-               
+                final FormState? form = _formKey.currentState;
+                if (form!.validate()) {
+                  loginController.login(
+                      _emailController.text, _passwordController.text);
+                } else {
+                  Get.snackbar('Error', 'Please Enter Email and Password',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.red,
+                      colorText: Colors.white,
+                      borderRadius: 10,
+                      borderColor: Colors.red,
+                      borderWidth: 2,
+                      duration: const Duration(seconds: 3));
+                }
               },
               bgColor: kLoginBlue,
               textColor: kWhite,
@@ -142,5 +175,14 @@ class LoginSection extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void validateAndSave() {
+    final FormState? form = _formKey.currentState;
+    if (form!.validate()) {
+      print('Form is valid');
+    } else {
+      print('Form is invalid');
+    }
   }
 }

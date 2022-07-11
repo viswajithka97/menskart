@@ -7,14 +7,6 @@ import 'package:menskart/view/core/space_constants.dart';
 
 class CategorySection extends StatelessWidget {
   CategorySection({Key? key}) : super(key: key);
-
-  final images = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6RjJsYfTRucnqZf__pqhp7ClgDUtHjR6mEQ&usqp=CAU',
-    'https://4.imimg.com/data4/EH/NN/MY-17368652/boys-casual-shirt-500x500.jpg',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJGGzaC6BdDD9dR1FSM0dFPnMXjQKSHzaQkw&usqp=CAU',
-    'https://cdn.shopify.com/s/files/1/0752/6435/products/SATURNRINGTSHIRTBLACK_24.jpg?v=1645852396',
-  ];
-
   final categoryController = Get.put(CategoryController());
 
   @override

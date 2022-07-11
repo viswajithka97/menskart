@@ -15,7 +15,7 @@ class SignUpSection extends StatelessWidget {
   final _confirmPasswordController = TextEditingController();
   final _mobileController = TextEditingController();
   final authController = Get.put(AuthenticationController());
-   SignUpSection({
+  SignUpSection({
     Key? key,
   }) : super(key: key);
 
@@ -45,22 +45,52 @@ class SignUpSection extends StatelessWidget {
             LoginFormField(
               formfieldtext: 'Full Name',
               controller: _nameContoller,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter your name';
+                }
+                return null;
+              },
             ),
             LoginFormField(
               formfieldtext: 'Email',
               controller: _emailController,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter your email';
+                }
+                return null;
+              },
             ),
             LoginFormField(
               formfieldtext: 'Password',
               controller: _passwordController,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter your password';
+                }
+                return null;
+              },
             ),
             LoginFormField(
               formfieldtext: 'Confirm Password',
               controller: _confirmPasswordController,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter your password';
+                }
+                return null;
+              },
             ),
             LoginFormField(
               formfieldtext: 'Mobile Number',
               controller: _mobileController,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter your mobile number';
+                }
+                return null;
+              },
             ),
             kHeight10,
             Padding(
@@ -102,9 +132,13 @@ class SignUpSection extends StatelessWidget {
             kHeight10,
             LoginButton(
               buttonText: 'Sign Up',
-              onPressed: (){
-                authController.signup(_nameContoller.text, _emailController.text, _passwordController.text,_confirmPasswordController.text, _mobileController.text);
-              
+              onPressed: () {
+                authController.signup(
+                    _nameContoller.text,
+                    _emailController.text,
+                    _passwordController.text,
+                    _confirmPasswordController.text,
+                    _mobileController.text);
               },
               bgColor: kLoginBlue,
               textColor: kWhite,

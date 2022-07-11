@@ -2,6 +2,8 @@
 //
 //     final categoryWiseProductModel = categoryWiseProductModelFromJson(jsonString);
 
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 
 CategoryWiseProductModel categoryWiseProductModelFromJson(String str) => CategoryWiseProductModel.fromJson(json.decode(str));
@@ -50,7 +52,7 @@ class Product {
         description: json["description"],
         orginalPrice: json["orginalPrice"],
         offerpercentage: json["offerpercentage"],
-        offerPrice: json["offerPrice"] == null ? null : json["offerPrice"],
+        offerPrice: json["offerPrice"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -60,7 +62,7 @@ class Product {
         "description": description,
         "orginalPrice": orginalPrice,
         "offerpercentage": offerpercentage,
-        "offerPrice": offerPrice == null ? null : offerPrice,
+        "offerPrice": offerPrice,
     };
 }
 
