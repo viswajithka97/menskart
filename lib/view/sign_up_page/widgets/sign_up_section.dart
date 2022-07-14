@@ -46,7 +46,10 @@ class SignUpSection extends StatelessWidget {
               formfieldtext: 'Full Name',
               controller: _nameContoller,
               validator: (value) {
-                if (value.isEmpty) {
+                if (!GetUtils.isUsername(value)) {
+                  return 'Please enter a valid name';
+                }
+                if (value.toString().isEmpty) {
                   return 'Please enter your name';
                 }
                 return null;
@@ -56,7 +59,10 @@ class SignUpSection extends StatelessWidget {
               formfieldtext: 'Email',
               controller: _emailController,
               validator: (value) {
-                if (value.isEmpty) {
+                if (!GetUtils.isEmail(value)) {
+                  return 'Please enter a valid email';
+                }
+                if (value.toString().isEmpty) {
                   return 'Please enter your email';
                 }
                 return null;
@@ -66,17 +72,26 @@ class SignUpSection extends StatelessWidget {
               formfieldtext: 'Password',
               controller: _passwordController,
               validator: (value) {
-                if (value.isEmpty) {
+                if (value.toString().length < 6) {
+                  return 'Password must be atleast 6 characters';
+                }
+
+                if (value.toString().isEmpty) {
                   return 'Please enter your password';
                 }
                 return null;
               },
+              obsureText: true,
             ),
             LoginFormField(
               formfieldtext: 'Confirm Password',
               controller: _confirmPasswordController,
+              obsureText: true,
               validator: (value) {
-                if (value.isEmpty) {
+                if (value.toString().length < 6) {
+                  return 'Password must be atleast 6 characters';
+                }
+                if (value.toString().isEmpty) {
                   return 'Please enter your password';
                 }
                 return null;
@@ -86,7 +101,10 @@ class SignUpSection extends StatelessWidget {
               formfieldtext: 'Mobile Number',
               controller: _mobileController,
               validator: (value) {
-                if (value.isEmpty) {
+                if (!GetUtils.isPhoneNumber(value)) {
+                  return 'Please enter a valid mobile number';
+                }
+                if (value.toString().isEmpty) {
                   return 'Please enter your mobile number';
                 }
                 return null;
@@ -143,7 +161,7 @@ class SignUpSection extends StatelessWidget {
               bgColor: kLoginBlue,
               textColor: kWhite,
             ),
-            kHeight20,
+            kHeight10,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: RichText(

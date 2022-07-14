@@ -10,7 +10,7 @@ class HomePageApiServices {
       return response;
     } catch (e) {
       rethrow;
-    }
+    } 
   }
 
 }

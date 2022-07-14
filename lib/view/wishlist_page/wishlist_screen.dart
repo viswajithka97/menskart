@@ -13,16 +13,12 @@ class WishListScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           const HeadingText(headingText: 'My Wishlist',),
+         const    HeadingText(
+              headingText: 'My Wishlist',
+            ),
             // kHeight10,
             Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return const WishlistContainer();
-                },
-                itemCount: 10,
-              ),
+              child: WishlistContainer(),
             ),
           ],
         ),

@@ -11,7 +11,6 @@ class HomePageController extends GetxController {
   Future<List<HomePageModel>?> getData() async {
     try {
       final response = await HomePageApiServices().getAllData();
-      // log(response!.data);
 
       if (response!.data != null) {
         final received = homePageModelFromJson(response.data);
@@ -28,7 +27,6 @@ class HomePageController extends GetxController {
     }
     return null;
   }
-
 
   @override
   void onInit() {

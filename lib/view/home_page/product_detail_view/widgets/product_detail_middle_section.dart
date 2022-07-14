@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:menskart/controller/wishlist_controller/wishlist_controller.dart';
 import 'package:menskart/model/category_wise_product_model/category_wise_product_model.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';
@@ -17,17 +19,22 @@ class ProductDetailMiddleSection extends StatelessWidget {
       children: [
         SizedBox(
           height: 30,
-          child: Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                  onPressed: () {
-                    print(category.id);
-                  },
-                  icon: const Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                    size: 30,
-                  ))),
+          child: GetBuilder<WishlistController>(
+            init: WishlistController(),
+            builder: (controller) {
+              return Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                      onPressed: () {
+                        controller.addToWishlist(category.id);
+                      },
+                      icon: const Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                        size: 30,
+                      )));
+            },
+          ),
         ),
         Row(
           children: [

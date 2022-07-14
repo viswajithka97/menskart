@@ -7,12 +7,14 @@ import 'package:menskart/model/login_page/login_page_model.dart';
 import 'package:menskart/model/signup_model/signup_model.dart';
 import 'package:menskart/view/login_page/login_screen.dart';
 import 'package:menskart/view/main_page/main_page.dart';
+import 'package:menskart/view/main_page/widgets/bottom_navigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthenticationController extends GetxController {
+  var isLoading = false.obs;
   login(String email, String password) async {
     Map<String, dynamic> login = {"email": email, "password": password};
-
+    isLoading.value = true;
     try {
       final response = await AuthenicationApiCalls().loginCheck(login);
 
@@ -20,7 +22,7 @@ class AuthenticationController extends GetxController {
         log('data undu.....');
         final data = loginModelFromJson(response.data);
         if (data.response.status == true && data.response.user.id.isNotEmpty) {
-          print('user id :${data.response.user.id}');
+          // print('user id :${data.response.user.id}');
           Get.snackbar('Welcome ${data.response.user.name}', 'Login Successful',
               snackPosition: SnackPosition.BOTTOM,
               backgroundColor: Colors.green,
@@ -31,8 +33,10 @@ class AuthenticationController extends GetxController {
               duration: const Duration(seconds: 3));
           final sharedPrefs = await SharedPreferences.getInstance();
           sharedPrefs.setString(loginKey, data.response.user.id);
-          print(sharedPrefs.getString(loginKey));
+          // print(sharedPrefs.getString(loginKey));
           log('==============user login success==================');
+          isLoading.value = false;
+          update();
           Get.offAll(MainPage());
         } else {
           Get.snackbar('Error',
@@ -44,6 +48,7 @@ class AuthenticationController extends GetxController {
               borderColor: Colors.red,
               borderWidth: 2,
               duration: const Duration(seconds: 3));
+          isLoading.value = false;
         }
       }
     } catch (e) {
@@ -108,6 +113,7 @@ class AuthenticationController extends GetxController {
             duration: const Duration(seconds: 3));
         final sharedPrefs = await SharedPreferences.getInstance();
         sharedPrefs.clear();
+        indexChangedNotifier.value = 0;
       }
     } catch (e) {
       log(e.toString());

@@ -76,6 +76,9 @@ class LoginSection extends StatelessWidget {
                     formfieldtext: 'mail@website.com',
                     controller: _emailController,
                     validator: (value) {
+                      if (!GetUtils.isEmail(value)) {
+                        return 'Please enter a valid email';
+                      }
                       if (value.toString().isEmpty) {
                         return 'Please enter your email';
                       }
@@ -89,6 +92,9 @@ class LoginSection extends StatelessWidget {
                     controller: _passwordController,
                     obsureText: true,
                     validator: (value) {
+                      if (value.toString().length < 4) {
+                        return 'Password must be atleast 4 characters';
+                      }
                       if (value.toString().isEmpty) {
                         return 'Please enter password';
                       }
@@ -136,6 +142,7 @@ class LoginSection extends StatelessWidget {
                 if (form!.validate()) {
                   loginController.login(
                       _emailController.text, _passwordController.text);
+                  // loginController.isLoading = true;
                 } else {
                   Get.snackbar('Error', 'Please Enter Email and Password',
                       snackPosition: SnackPosition.BOTTOM,
@@ -150,7 +157,18 @@ class LoginSection extends StatelessWidget {
               bgColor: kLoginBlue,
               textColor: kWhite,
             ),
-            kHeight20,
+            Obx(() => Visibility(
+                  visible: loginController.isLoading.value,
+                  child: SizedBox(
+                    height: size.height * 0.1,
+                    width: double.infinity,
+                    child: const Center(
+                      child: CircularProgressIndicator(
+                        color: kLoginBlue,
+                      ),
+                    ),
+                  ),
+                )),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: RichText(

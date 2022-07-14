@@ -28,6 +28,7 @@ class ProductDetailTopSection extends StatelessWidget {
             borderRadius: kBRadius10,
             image: DecorationImage(
                 image: NetworkImage('$kProductUrl${category.id}.jpg'),
+                filterQuality: FilterQuality.high,
                 fit: BoxFit.cover),
           ),
         ),

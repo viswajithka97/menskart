@@ -13,6 +13,7 @@ class CategoryController extends GetxController {
       final response = await CategoryApiServices().getCategoryData(category);
 
       if (response!.data != null) {
+        log(response.data);
         final recieved = categoryWiseProductModelFromJson(response.data);
         categoryProduct = recieved.products.obs;
 
