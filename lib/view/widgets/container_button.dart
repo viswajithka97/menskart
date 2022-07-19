@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:menskart/view/core/color_constants.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 class ContainerButton extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final double height;
   final double width;
   final IconData? containerIcon;
+  final double? iconStyle;
   final String buttonText;
   final Color buttonColor;
   final BorderRadius radius;
+  final VoidCallback onPressed;
   const ContainerButton({
     Key? key,
     required this.height,
@@ -17,6 +20,8 @@ class ContainerButton extends StatelessWidget {
     this.buttonColor = kConButonColor,
     required this.radius,
     required this.buttonText,
+    required this.onPressed,
+    this.iconStyle,
   }) : super(key: key);
 
   @override
@@ -26,10 +31,11 @@ class ContainerButton extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(color: buttonColor, borderRadius: radius),
       child: TextButton.icon(
-        onPressed: () {},
+        onPressed: onPressed,
         icon: Icon(
           containerIcon,
           color: kWhite,
+          size: iconStyle,
         ),
         label: Text(
           buttonText,

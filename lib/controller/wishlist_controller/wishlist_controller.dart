@@ -46,6 +46,8 @@ class WishlistController extends GetxController {
     try {
       final sharedPrefs = await SharedPreferences.getInstance();
       final userId = sharedPrefs.getString(loginKey);
+      log(userId.toString());
+      log(productId.toString());
       Map<String, dynamic> id = {"proId": productId, "userId": userId};
       final response = await WishlistServices().addToWishlist(id);
 
@@ -76,14 +78,12 @@ class WishlistController extends GetxController {
         }
         // update();
       }
-     
     } catch (e) {
       log(e.toString());
     }
   }
 
   getWishlist() async {
-    print("object");
     try {
       final sharedPrefs = await SharedPreferences.getInstance();
       final userId = sharedPrefs.getString(loginKey);

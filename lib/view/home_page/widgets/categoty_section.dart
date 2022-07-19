@@ -38,7 +38,7 @@ class CategorySection extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         categoryController
-                            .getCategory(controller.category![index].category);
+                            .getCategory(controller.category![index].category.toString());
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -50,7 +50,7 @@ class CategorySection extends StatelessWidget {
                                 'https://menscart.shop/category-image/${controller.category![index].id}.jpg'),
                           ),
                           Text(
-                            controller.category![index].category,
+                            controller.category![index].category.toString(),
                             style: const TextStyle(fontSize: 25),
                           )
                         ],

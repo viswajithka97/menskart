@@ -17,13 +17,7 @@ class CartScreen extends StatelessWidget {
           const HeadingText(
             headingText: 'Your Cart',
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return const OrdersContainer();
-            },
-            itemCount: 2,
-          ),
+          OrdersContainer(),
           kHeight10,
           const Divider(
             thickness: 2,

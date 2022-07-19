@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:menskart/controller/cart_controller/cart_controller.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
+import 'package:menskart/view/core/url_constants.dart';
 import 'package:menskart/view/widgets/container_button.dart';
 
 class OrdersContainer extends StatelessWidget {
@@ -11,118 +14,171 @@ class OrdersContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 150,
+    return GetBuilder<CartController>(
+      init: CartController(),
+      builder: (controller) {
+        if (controller.products == null) {
+          return const SizedBox(
+            height: 200,
             width: double.infinity,
-            decoration:
-                BoxDecoration(borderRadius: kBRadius15, color: kConBagColor),
-            child: Row(
-              children: [
-                Padding(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else {
+          return ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.products!.length,
+              itemBuilder: (context, index) {
+                final product = controller.products![index].product;
+
+                return Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: 140,
-                    width: 140,
-                    decoration: BoxDecoration(
-                        borderRadius: kBRadius10,
-                        image: const DecorationImage(
-                            image: NetworkImage(
-                                'https://www.rei.com/dam/content_team_010818_52427_htc_running_shoes_hero2_lg.jpg'),
-                            fit: BoxFit.cover)),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: SizedBox(
-                    height: 150,
-                    width: 210,
-                    // color: kBlack,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Mens Regular Lace Up mens Sports Shoes',
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                        kHeight5,
-                        const Text(
-                          '₹ 2,240',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                        kHeight5,
-                        const Text(
-                          'In Stock',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: Colors.green),
-                        ),
-                        kHeight5,
-                        Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 150,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: kBRadius15, color: kConBagColor),
+                        child: Row(
                           children: [
-                            Container(
-                              height: 35,
-                              width: 105,
-                              color: kWhite,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    height: 35,
-                                    width: 30,
-                                    child: IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(Icons.remove),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 35,
-                                    width: 35,
-                                    child: Center(
-                                      child: Text(
-                                        '1',
-                                        style: TextStyle(
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 35,
-                                    width: 30,
-                                    child: IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(Icons.add),
-                                    ),
-                                  ),
-                                ],
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                height: 140,
+                                width: 140,
+                                decoration: BoxDecoration(
+                                    borderRadius: kBRadius10,
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            '$kProductUrl${product.id}.jpg'),
+                                        fit: BoxFit.cover)),
                               ),
                             ),
-                            const Spacer(),
-                             ContainerButton(
-                                height: 38,
-                                width: 100,
-                                containerIcon: Icons.delete,
-                                radius: kBRadius30,
-                                buttonText: 'Delete'),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: SizedBox(
+                                height: 150,
+                                width: 210,
+                                // color: kBlack,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      product.description,
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                    kHeight5,
+                                    product.offerPrice == null
+                                        ? Text('₹ ${product.orginalPrice}',
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20))
+                                        : Text(
+                                            '₹ ${product.offerPrice}',
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20),
+                                          ),
+                                    kHeight5,
+                                    const Text(
+                                      'In Stock',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                          color: Colors.green),
+                                    ),
+                                    kHeight5,
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {
+                                                int count = -1;
+                                                controller.productQuantity(
+                                                    product.id,
+                                                    controller
+                                                        .products![index].id,
+                                                    count,
+                                                    controller.products![index]
+                                                        .quantity);
+                                              },
+                                              icon: const Icon(
+                                                  Icons.remove_circle_outline),
+                                            ),
+                                            Text(
+                                              controller
+                                                  .products![index].quantity
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            IconButton(
+                                              onPressed: () {
+                                                int count = 1;
+                                                controller.productQuantity(
+                                                    product.id,
+                                                    controller
+                                                        .products![index].id,
+                                                    count,
+                                                    controller.products![index]
+                                                        .quantity);
+                                              },
+                                              icon: const Icon(Icons
+                                                  .add_circle_outline_rounded),
+                                            ),
+                                          ],
+                                        ),
+                                        const Spacer(),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 8.0),
+                                          child: ContainerButton(
+                                              height: 33,
+                                              width: 80,
+                                              containerIcon: Icons.delete,
+                                              iconStyle: 15,
+                                              radius: kBRadius30,
+                                              onPressed: () {
+                                                controller
+                                                    .deleteProductFromCart(
+                                                        product.id,
+                                                        controller
+                                                            .products![index]
+                                                            .id);
+                                                controller.getCartItems();
+                                                controller.update();
+                                              },
+                                              buttonText: 'Delete'),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
                           ],
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+                );
+              });
+        }
+      },
     );
   }
 }

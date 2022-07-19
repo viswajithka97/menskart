@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:menskart/controller/cart_controller/cart_controller.dart';
 import 'package:menskart/controller/wishlist_controller/wishlist_controller.dart';
 import 'package:menskart/model/category_wise_product_model/category_wise_product_model.dart';
 import 'package:menskart/view/core/border_radius.dart';
@@ -9,9 +10,9 @@ import 'package:menskart/view/widgets/container_button.dart';
 
 class ProductDetailMiddleSection extends StatelessWidget {
   final Product category;
-  const ProductDetailMiddleSection({Key? key, required this.category})
+  ProductDetailMiddleSection({Key? key, required this.category})
       : super(key: key);
-
+  final controller = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -116,6 +117,10 @@ class ProductDetailMiddleSection extends StatelessWidget {
               buttonText: 'Add to Cart',
               containerIcon: Icons.shopping_cart_outlined,
               radius: kBRadius10,
+              onPressed: () {
+                print('button called');
+                controller.addToCart(category.id);
+              },
             ),
             ContainerButton(
               height: 50,
@@ -124,6 +129,7 @@ class ProductDetailMiddleSection extends StatelessWidget {
               containerIcon: Icons.shopping_cart_outlined,
               radius: kBRadius10,
               buttonColor: kGreen,
+              onPressed: () {},
             ),
           ],
         )

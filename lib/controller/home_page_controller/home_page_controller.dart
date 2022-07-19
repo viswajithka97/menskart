@@ -14,6 +14,7 @@ class HomePageController extends GetxController {
 
       if (response!.data != null) {
         final received = homePageModelFromJson(response.data);
+        
         products = received.products.obs;
         banner = received.banner.obs;
         category = received.category.obs;

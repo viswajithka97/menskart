@@ -4,6 +4,7 @@ import 'package:menskart/controller/home_page_controller/home_page_controller.da
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
 import 'package:menskart/view/widgets/rating_star_widget.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DealOfTheDaySection extends StatelessWidget {
   const DealOfTheDaySection({Key? key}) : super(key: key);
@@ -23,13 +24,62 @@ class DealOfTheDaySection extends StatelessWidget {
           initState: (_) {},
           builder: (controller) {
             if (controller.products == null) {
-              return const SizedBox(
-                height: 200,
-                width: double.infinity,
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
+              return SizedBox(
+                  width: double.infinity,
+                  height: 280.0,
+                  child: Column(mainAxisSize: MainAxisSize.max, children: [
+                    Expanded(
+                      child: Shimmer.fromColors(
+                        baseColor: Color.fromARGB(255, 216, 226, 228),
+                        highlightColor: Colors.white,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 150.0,
+                              height: 280.0,
+                              color: Colors.white,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    height: 8.0,
+                                    color: Colors.white,
+                                  ),
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 2.0),
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    height: 8.0,
+                                    color: Colors.white,
+                                  ),
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 2.0),
+                                  ),
+                                  Container(
+                                    width: 40.0,
+                                    height: 8.0,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ]));
             }
             return Container(
               height: 280,
