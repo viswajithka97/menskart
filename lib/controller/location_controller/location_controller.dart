@@ -13,11 +13,13 @@ class LocationController extends GetxController {
   LatLng? currentAddress;
   String pincode = '';
   String locatlityName = '';
-  // String locatlity = '';
   String street = '';
   String country = '';
   String state = '';
-  // String currentAddress = '';
+  List<Placemark>? p;
+  int? index;
+  double? latitude;
+  double? longitude;
 
   getCurrentLocation() async {
     Position position = await goToLocation();
@@ -33,25 +35,30 @@ class LocationController extends GetxController {
     Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
       // currentPosition = position;
-      getAddressfromLatLang(position.latitude, position.longitude);
+      latitude = position.latitude;
+      longitude = position.longitude;
+      update();
+      getAddressfromLatLang();
       update();
     }).catchError((e) {
       log(e);
     });
   }
 
-  void getAddressfromLatLang(latitude, longitude) async {
+  getAddressfromLatLang() async {
     try {
-      List<Placemark> p = await placemarkFromCoordinates(latitude, longitude);
-      Placemark place = p[0];
+      p = await placemarkFromCoordinates(latitude!, longitude!);
+      log(index.toString());
+      Placemark place = index == null ? p![0] : p![index!];
       locatlityName = "${place.name}";
       // locatlity = "${place.locality}";
       street = "${place.street}";
       state = "${place.administrativeArea}";
       pincode = "${place.postalCode}";
       country = "${place.country}";
+      log(place.toString());
       update();
-      log(p[0].toString());
+      return p;
     } catch (e) {
       print(e);
     }
@@ -65,8 +72,10 @@ class LocationController extends GetxController {
     );
     markers.clear();
     markers.add(newMarker);
-    getAddressfromLatLang(latLng.latitude, latLng.longitude);
-    print(markers.length);
+    latitude = latLng.latitude;
+    longitude = latLng.longitude;
+    update();
+    getAddressfromLatLang();
     update();
   }
 

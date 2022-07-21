@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_types_as_parameter_names, non_constant_identifier_names
+
 import 'dart:async';
 import 'dart:developer';
 
@@ -35,10 +37,47 @@ class LocationFetch extends StatelessWidget {
               actions: [
                 IconButton(
                     onPressed: () {
-                      controller.update();
-                      Get.back();
+                      final placemark = controller.p;
+                      Get.dialog(
+                        AlertDialog(
+                          title: const Text('Location'),
+                          content: SizedBox(
+                            height: 250,
+                            width: 350,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: placemark!.length,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    title: Text(placemark[index].name!),
+                                    subtitle: Text(placemark[index].locality!),
+                                    onTap: () {
+                                      controller.index = index;
+
+                                      controller.getAddressfromLatLang();
+
+                                      controller.update();
+                                      Get.back();
+                                      Get.back();
+                                    },
+                                  );
+                                }),
+                          ),
+                          // actions: [
+                          //   FlatButton(
+                          //     onPressed: () {
+                          //       Get.back();
+                          //     },
+                          //     child: const Text('OK'),
+                          //   )
+                          // ],
+                        ),
+                      );
+
+                      // controller.update();
+                      // Get.back();
                     },
-                    icon: Icon(Icons.save))
+                    icon: const Icon(Icons.save))
               ],
             ),
             body: GoogleMap(
@@ -60,7 +99,7 @@ class LocationFetch extends StatelessWidget {
                 log(controller.currentAddress.toString());
                 // Get.back();
               },
-              label: const Text('Go To Location'),
+              label: const Text('Current Location'),
               icon: const Icon(Icons.location_on_outlined),
             ),
           );

@@ -3,10 +3,12 @@ import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/location_controller/location_controller.dart';
 import 'package:menskart/view/address_page/add_address/widgets/location_fetch.dart';
+import 'package:menskart/view/address_page/widgets/drop_down_widget.dart';
 
 import 'package:menskart/view/address_page/widgets/text_and_form_field_widget.dart';
 import 'package:menskart/view/cart_page/widgets/confirm_yellow_button.dart';
 import 'package:menskart/view/core/color_constants.dart';
+import 'package:menskart/view/core/space_constants.dart';
 import 'package:menskart/view/widgets/heading_text.dart';
 
 class AddAddressPage extends StatelessWidget {
@@ -69,6 +71,8 @@ class AddAddressPage extends StatelessWidget {
                     controller: stateController,
                     headingText: 'State',
                     hintText: 'Select the State'),
+                kHeight10,
+                const DropDownAddressWidget(),
                 // TextandFormFieldWidget(
                 //     headingText: 'Address Type',
                 //     hintText: 'Select your Address Type'),
@@ -77,7 +81,6 @@ class AddAddressPage extends StatelessWidget {
               ],
             ),
           );
-          
         });
   }
 }
