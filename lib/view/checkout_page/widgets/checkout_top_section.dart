@@ -19,7 +19,7 @@ class CheckoutTopSection extends StatelessWidget {
             SizedBox(
               height: 50,
               width: MediaQuery.of(context).size.width * 0.6,
-              child: const ConfirmYellowButton(
+              child: ConfirmYellowButton(
                   buttonText: 'Add new Address',
                   buttonColor: kBackgroundGrey,
                   onPressed: AddAddressPage()),

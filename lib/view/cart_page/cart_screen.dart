@@ -14,16 +14,16 @@ class CartScreen extends StatelessWidget {
         body: SafeArea(
       child: ListView(
         children: [
-          const HeadingText(
+        const   HeadingText(
             headingText: 'Your Cart',
           ),
-          OrdersContainer(),
+         const OrdersContainer(),
           kHeight10,
-          const Divider(
+         const  Divider(
             thickness: 2,
             color: kBlack,
           ),
-          const CartBottomSection()
+           CartBottomSection()
         ],
       ),
     ));

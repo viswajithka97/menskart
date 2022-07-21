@@ -11,6 +11,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class CartController extends GetxController {
   List<ProductElement>? products;
+  Rx<int>? cartCount;
+  Rx<int>? totalValue;
 
   getCartItems() async {
     try {
@@ -22,6 +24,8 @@ class CartController extends GetxController {
       if (response.statusCode == 200) {
         final data = viewCartModelFromJson(response.data);
         products = data.products.obs;
+        cartCount = data.cartCount.obs;
+        totalValue = data.totalValue.obs;
         update();
       }
     } catch (e) {

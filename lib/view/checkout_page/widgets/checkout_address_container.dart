@@ -6,7 +6,8 @@ import 'package:menskart/view/core/color_constants.dart';
 class CheckoutAddressSelect extends StatelessWidget {
   final bool visibility;
   const CheckoutAddressSelect({
-    Key? key,  this.visibility=false,
+    Key? key,
+    this.visibility = false,
   }) : super(key: key);
 
   @override
@@ -41,12 +42,10 @@ class CheckoutAddressSelect extends StatelessWidget {
                           ),
                         ),
                         Visibility(
-                           visible: visibility,
-                            child:  GestureDetector(
-                              onTap: (){
-                                
-                              },
-                              child: const Icon(Icons.delete)),),
+                          visible: visibility,
+                          child: GestureDetector(
+                              onTap: () {}, child: const Icon(Icons.delete)),
+                        ),
                       ],
                     ),
                     const Text(
@@ -64,14 +63,14 @@ class CheckoutAddressSelect extends StatelessWidget {
                             fontSize: 18,
                           ),
                         ),
-                        SizedBox(
-                          height: 40,
-                          width: 80,
-                          child: ConfirmYellowButton(
-                              buttonText: 'Edit',
-                              buttonColor: kConButonColor,
-                              onPressed: EditAddress()),
-                        )
+                        // SizedBox(
+                        //   height: 40,
+                        //   width: 80,
+                        //   child: ConfirmYellowButton(
+                        //       buttonText: 'Edit',
+                        //       buttonColor: kConButonColor,
+                        //       onPressed: EditAddress()),
+                        // )
                       ],
                     ),
                   ],
