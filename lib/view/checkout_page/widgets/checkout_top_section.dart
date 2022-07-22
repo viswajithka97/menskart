@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:menskart/view/address_page/add_address/add_address_page.dart';
 import 'package:menskart/view/cart_page/widgets/confirm_yellow_button.dart';
 import 'package:menskart/view/core/color_constants.dart';
@@ -22,7 +23,9 @@ class CheckoutTopSection extends StatelessWidget {
               child: ConfirmYellowButton(
                   buttonText: 'Add new Address',
                   buttonColor: kBackgroundGrey,
-                  onPressed: AddAddressPage()),
+                  onPressed: () {
+                    Get.to(AddAddressPage());
+                  }),
             )
           ],
         ),

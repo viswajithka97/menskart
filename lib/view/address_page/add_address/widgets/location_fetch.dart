@@ -96,8 +96,6 @@ class LocationFetch extends StatelessWidget {
             floatingActionButton: FloatingActionButton.extended(
               onPressed: () async {
                 controller.getCurrentLocation();
-                log(controller.currentAddress.toString());
-                // Get.back();
               },
               label: const Text('Current Location'),
               icon: const Icon(Icons.location_on_outlined),

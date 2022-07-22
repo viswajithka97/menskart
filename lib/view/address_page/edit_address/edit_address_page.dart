@@ -1,31 +1,136 @@
-// import 'package:flutter/material.dart';
-// import 'package:menskart/view/address_page/widgets/text_and_form_field_widget.dart';
-// import 'package:menskart/view/cart_page/widgets/confirm_yellow_button.dart';
-// import 'package:menskart/view/core/color_constants.dart';
-// import 'package:menskart/view/widgets/heading_text.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:menskart/controller/address_controller/address_controller.dart';
+import 'package:menskart/controller/location_controller/location_controller.dart';
+import 'package:menskart/model/address_model/get_all_address_model.dart';
+import 'package:menskart/view/address_page/add_address/widgets/location_fetch.dart';
+import 'package:menskart/view/address_page/widgets/drop_down_widget.dart';
+import 'package:menskart/view/address_page/widgets/text_and_form_field_widget.dart';
+import 'package:menskart/view/cart_page/widgets/confirm_yellow_button.dart';
+import 'package:menskart/view/core/color_constants.dart';
+import 'package:menskart/view/core/space_constants.dart';
+import 'package:menskart/view/widgets/heading_text.dart';
 
-// class EditAddress extends StatelessWidget {
-//   const EditAddress({Key? key}) : super(key: key);
+class EditAddress extends StatelessWidget {
+  final AddressClass address;
+  const EditAddress({
+    Key? key,
+    required this.address,
+  }) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(),
-//       body: SafeArea(child: ListView(
-//         children:const [
-//           HeadingText(headingText: 'Edit Address'),
-//           TextandFormFieldWidget(headingText: 'Full Name', hintText: 'Viswajith K A'),
-//           TextandFormFieldWidget(headingText: 'Mobile Number', hintText: '+91 9447617999'),
-//           TextandFormFieldWidget(headingText: 'Pin Code', hintText: '682030'),
-//           TextandFormFieldWidget(headingText: 'Flat,House No,Building Name', hintText: 'House No: 12'),
-//           TextandFormFieldWidget(headingText: 'Road Name, Area , Colony', hintText: 'Thammadiyill Temple Road'),
-//           TextandFormFieldWidget(headingText: 'Landmark', hintText: 'Aiswarya Nagar'),
-//           TextandFormFieldWidget(headingText: 'Town/City', hintText: 'Thripunitura'),
-//           TextandFormFieldWidget(headingText: 'State', hintText: 'Kerala'),
-//           TextandFormFieldWidget(headingText: 'Address Type', hintText: 'Home(7am -9pm Delivery)'),
-//          ConfirmYellowButton(buttonText: 'Save Changes', buttonColor: kYellow,)
-//         ],
-//       )),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(),
+        body: SafeArea(
+          child: GetBuilder<LocationController>(
+              init: LocationController(),
+              initState: (_) {},
+              builder: (controller) {
+                final nameController =
+                    TextEditingController(text: address.name);
+                final phoneController =
+                    TextEditingController(text: address.phoneNumber);
+                final houseNoController =
+                    TextEditingController(text: address.house.toString());
+                final addressController = TextEditingController(
+                    text: controller.locatlityName.isEmpty
+                        ? address.address
+                        : controller.locatlityName);
+                final pincodeController = TextEditingController(
+                    text: controller.pincode.isEmpty
+                        ? address.pincode
+                        : controller.pincode);
+                final cityController = TextEditingController(
+                    text: controller.street.isEmpty
+                        ? address.city
+                        : controller.street);
+
+                final stateController =
+                    TextEditingController(text: address.state);
+
+                return ListView(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const HeadingText(headingText: 'Edit Address'),
+                        ElevatedButton(
+                            onPressed: () {
+                              Get.to(() => const LocationFetch());
+                            },
+                            child: const Icon(Icons.location_on_outlined))
+                      ],
+                    ),
+                    TextandFormFieldWidget(
+                      headingText: 'Full Name',
+                      hintText: 'Enter your Name',
+                      controller: nameController,
+                    ),
+                    TextandFormFieldWidget(
+                      headingText: 'Mobile Number',
+                      hintText: 'Enter your Mobile Number',
+                      controller: phoneController,
+                    ),
+                    TextandFormFieldWidget(
+                      headingText: 'Pin Code',
+                      hintText: 'Enter your Pincode',
+                      controller: pincodeController,
+                    ),
+                    TextandFormFieldWidget(
+                        headingText: 'Flat No.,House No,Building No.',
+                        controller: houseNoController,
+                        hintText: 'Enter your House No,Building No.,Flat No.'),
+                    TextandFormFieldWidget(
+                        headingText: 'Address',
+                        controller: addressController,
+                        hintText: 'Enter your Address'),
+                    TextandFormFieldWidget(
+                        controller: cityController,
+                        headingText: 'Road Name, Area , Colony',
+                        hintText: 'Enter yourRoad Name, Area , Colony'),
+                    TextandFormFieldWidget(
+                        controller: stateController,
+                        headingText: 'State',
+                        hintText: 'Select the State'),
+                    kHeight10,
+                    const DropDownAddressWidget(),
+                    GetBuilder<AddressController>(
+                      init: AddressController(),
+                      initState: (_) {},
+                      builder: (addresGetxController) {
+                        return ConfirmYellowButton(
+                          buttonText: 'Save Changes',
+                          buttonColor: kYellow,
+                          onPressed: () {
+                            final name = nameController.text;
+                            final phoneNumber = phoneController.text;
+                            final state = stateController.text;
+                            final homeAddress = addressController.text;
+                            final pincode = pincodeController.text;
+                            final city = cityController.text;
+                            final houseNo = houseNoController.text;
+                            final addressType = selectedvalue.toString();
+
+                            final id = address.useraddress;
+                            addresGetxController.editAddress(
+                                name,
+                                phoneNumber,
+                                state,
+                                pincode,
+                                city,
+                                int.parse(houseNo),
+                                homeAddress,
+                                addressType,
+                                id);
+                            Get.back();
+                          },
+                        );
+                      },
+                    )
+                  ],
+                );
+              }),
+        ));
+  }
+}

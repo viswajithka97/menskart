@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
+import 'package:menskart/controller/address_controller/address_controller.dart';
 import 'package:menskart/controller/location_controller/location_controller.dart';
 import 'package:menskart/view/address_page/add_address/widgets/location_fetch.dart';
 import 'package:menskart/view/address_page/widgets/drop_down_widget.dart';
@@ -21,6 +22,7 @@ class AddAddressPage extends StatelessWidget {
         builder: (controller) {
           final nameController = TextEditingController();
           final phoneController = TextEditingController();
+          final houseNoController = TextEditingController();
           final addressController =
               TextEditingController(text: controller.locatlityName);
           final pincodeController =
@@ -42,7 +44,6 @@ class AddAddressPage extends StatelessWidget {
                         child: const Icon(Icons.location_on_outlined))
                   ],
                 ),
-
                 TextandFormFieldWidget(
                   headingText: 'Full Name',
                   hintText: 'Enter your Name',
@@ -59,25 +60,53 @@ class AddAddressPage extends StatelessWidget {
                   controller: pincodeController,
                 ),
                 TextandFormFieldWidget(
-                    headingText: 'Flat,House No,Building Name',
+                    headingText: 'Flat No.,House No,Building No.',
+                    controller: houseNoController,
+                    hintText: 'Enter your House No,Building No.,Flat No.'),
+                TextandFormFieldWidget(
+                    headingText: 'Address',
                     controller: addressController,
-                    hintText: 'Enter your House No,Building Name,Flat'),
+                    hintText: 'Enter your Address'),
                 TextandFormFieldWidget(
                     controller: cityController,
                     headingText: 'Road Name, Area , Colony',
                     hintText: 'Enter yourRoad Name, Area , Colony'),
-
                 TextandFormFieldWidget(
                     controller: stateController,
                     headingText: 'State',
                     hintText: 'Select the State'),
                 kHeight10,
                 const DropDownAddressWidget(),
-                // TextandFormFieldWidget(
-                //     headingText: 'Address Type',
-                //     hintText: 'Select your Address Type'),
-                const ConfirmYellowButton(
-                    buttonText: 'Add New Address', buttonColor: kYellow),
+                GetBuilder<AddressController>(
+                  init: AddressController(),
+                  initState: (_) {},
+                  builder: (addController) {
+                    return ConfirmYellowButton(
+                      buttonText: 'Add New Address',
+                      buttonColor: kYellow,
+                      onPressed: () {
+                        final name = nameController.text;
+                        final phoneNumber = phoneController.text;
+                        final state = stateController.text;
+                        final address = addressController.text;
+                        final pincode = pincodeController.text;
+                        final city = cityController.text;
+                        final houseNo = houseNoController.text;
+                        final addressType = selectedvalue.toString();
+                        addController.addAddress(
+                            name,
+                            phoneNumber,
+                            state,
+                            pincode,
+                            city,
+                            int.parse(houseNo),
+                            address,
+                            addressType);
+                        Get.back();
+                      },
+                    );
+                  },
+                ),
               ],
             ),
           );

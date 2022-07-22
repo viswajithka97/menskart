@@ -8,7 +8,7 @@ import 'package:menskart/view/core/space_constants.dart';
 import 'package:menskart/view/widgets/normal_heading_text.dart';
 
 class CartBottomSection extends StatelessWidget {
-  const CartBottomSection({Key? key}) : super(key: key);  
+  const CartBottomSection({Key? key}) : super(key: key);
   // final cartController = Get.put();
   @override
   Widget build(BuildContext context) {
@@ -93,10 +93,12 @@ class CartBottomSection extends StatelessWidget {
               ),
             ),
             kHeight10,
-            const ConfirmYellowButton(
+            ConfirmYellowButton(
               buttonText: 'Proceed to Checkout',
               buttonColor: kYellow,
-              onPressed: CheckoutAddressPage(),
+              onPressed: () {
+                Get.to(const CheckoutAddressPage());
+              },
             ),
           ],
         );

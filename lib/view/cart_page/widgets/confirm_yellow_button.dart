@@ -8,13 +8,13 @@ class ConfirmYellowButton extends StatelessWidget {
   final String buttonText;
   final Color buttonColor;
   final Color? textColor;
-  final onPressed;
+  final VoidCallback onPressed;
 
   const ConfirmYellowButton({
     Key? key,
     required this.buttonText,
     required this.buttonColor,
-    this.onPressed,
+    required this.onPressed,
     this.textColor = kBlack,
   }) : super(key: key);
 
@@ -28,13 +28,7 @@ class ConfirmYellowButton extends StatelessWidget {
         child: MaterialButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           color: buttonColor,
-          onPressed: () {
-            if (onPressed != null) {
-              Get.to(onPressed);
-            } else {
-              Get.back();
-            }
-          },
+          onPressed:onPressed,
           child: Text(
             buttonText,
             style: TextStyle(color: textColor),
