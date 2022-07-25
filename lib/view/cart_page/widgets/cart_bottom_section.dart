@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/cart_controller/cart_controller.dart';
+import 'package:menskart/controller/place_order_controller/place_order_controller.dart';
 import 'package:menskart/view/cart_page/widgets/confirm_yellow_button.dart';
 import 'package:menskart/view/checkout_page/checkout_address_page.dart';
 import 'package:menskart/view/core/color_constants.dart';
@@ -9,12 +10,14 @@ import 'package:menskart/view/widgets/normal_heading_text.dart';
 
 class CartBottomSection extends StatelessWidget {
   const CartBottomSection({Key? key}) : super(key: key);
-  // final cartController = Get.put();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(
       init: CartController(),
       builder: (cartController) {
+        final couponaddController = Get.put(PlaceOrderController());
+
+        final couponController = TextEditingController();
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -45,6 +48,7 @@ class CartBottomSection extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.6,
                     height: 40,
                     child: TextFormField(
+                      controller: couponController,
                       decoration: InputDecoration(
                         fillColor: kBackgroundGrey,
                         filled: true,
@@ -66,7 +70,10 @@ class CartBottomSection extends StatelessWidget {
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.green)),
-                      onPressed: () {},
+                      onPressed: () {
+                        couponaddController.applyCoupon(couponController.text,
+                            int.parse(cartController.totalValue.toString()));
+                      },
                       child: const Text(
                         'Apply',
                         style: TextStyle(color: kWhite, fontSize: 18),
@@ -88,7 +95,7 @@ class CartBottomSection extends StatelessWidget {
                   Text(
                     '₹ ${cartController.totalValue}',
                     style: const TextStyle(fontSize: 20),
-                  ),
+                  )
                 ],
               ),
             ),

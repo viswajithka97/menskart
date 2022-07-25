@@ -10,7 +10,7 @@ class AccountContainerWidget extends StatelessWidget {
   final subHeading;
   final String buttonText;
   
-  final onPressed;
+  final VoidCallback? onPressed;
   const AccountContainerWidget({
     Key? key, required this.heading, this.subHeading, required this.buttonText, this.onPressed,
   }) : super(key: key);
@@ -44,9 +44,7 @@ class AccountContainerWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [GestureDetector(
-                onTap: (){
-                  Get.to(onPressed);
-                },
+                onTap: onPressed,
                 child:  Text(buttonText,style: const TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),))],
             )
           ],

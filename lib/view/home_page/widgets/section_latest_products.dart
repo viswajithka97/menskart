@@ -4,12 +4,11 @@ import 'package:menskart/controller/home_page_controller/home_page_controller.da
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
 import 'package:menskart/view/home_page/home_page_detail_view/home_page_view.dart';
-import 'package:menskart/view/home_page/product_detail_view/product_detail_view_page.dart';
 import 'package:menskart/view/widgets/rating_star_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
-class DealOfTheDaySection extends StatelessWidget {
-  const DealOfTheDaySection({Key? key}) : super(key: key);
+class LatestProductsSection extends StatelessWidget {
+  const LatestProductsSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class DealOfTheDaySection extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.all(10.0),
-          child: Text('Deal of the Day',
+          child: Text('Latest Products ',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
         ),
         GetBuilder<HomePageController>(
@@ -93,8 +92,9 @@ class DealOfTheDaySection extends StatelessWidget {
                   itemCount: controller.products!.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: (){
-                        Get.to(()=>HomePageView(productId: controller.products![index]));
+                      onTap: () {
+                        // Get.to(() => HomePageView(
+                        //     productId: controller.l![index]));
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -117,7 +117,7 @@ class DealOfTheDaySection extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                         image: NetworkImage(
-                                            'http://menscart.shop/product-images/${controller.products![index].id}.jpg'),
+                                            'http://menscart.shop/product-images/${controller.trendingProducts![index].id}.jpg'),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -141,13 +141,13 @@ class DealOfTheDaySection extends StatelessWidget {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     Text(
-                                      '₹ ${controller.products![index].offerPrice}',
+                                      '₹ ${controller.trendingProducts![index].offerPrice}',
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20),
                                     ),
                                     Text(
-                                        '₹${controller.products![index].orginalPrice}',
+                                        '₹${controller.trendingProducts![index].orginalPrice}',
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.grey,

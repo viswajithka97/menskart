@@ -7,6 +7,7 @@ class HomePageController extends GetxController {
   List<Product>? products;
   List<Banner>? banner;
   List<Category>? category;
+  List<TrendingProduct>? trendingProducts;
 
   Future<List<HomePageModel>?> getData() async {
     try {
@@ -14,10 +15,11 @@ class HomePageController extends GetxController {
 
       if (response!.data != null) {
         final received = homePageModelFromJson(response.data);
-        
+
         products = received.products.obs;
         banner = received.banner.obs;
         category = received.category.obs;
+        trendingProducts = received.trendingProducts.obs;
         log(category!.length.toString());
         update();
       } else {

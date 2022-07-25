@@ -23,9 +23,13 @@ class CartController extends GetxController {
       log(response!.data);
       if (response.statusCode == 200) {
         final data = viewCartModelFromJson(response.data);
-        products = data.products.obs;
-        cartCount = data.cartCount.obs;
-        totalValue = data.totalValue.obs;
+        if (data.products!.isNotEmpty) {
+          products = data.products!.obs;
+          cartCount = data.cartCount.obs;
+          totalValue = data.totalValue!.obs;
+          update();
+        }
+        products = data.products!.obs;
         update();
       }
     } catch (e) {

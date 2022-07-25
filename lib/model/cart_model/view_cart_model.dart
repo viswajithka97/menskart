@@ -2,6 +2,7 @@
 //
 //     final viewCartModel = viewCartModelFromJson(jsonString);
 
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
 ViewCartModel viewCartModelFromJson(String str) => ViewCartModel.fromJson(json.decode(str));
@@ -16,9 +17,9 @@ class ViewCartModel {
         required this.wishilistCount,
     });
 
-    List<ProductElement> products;
+    List<ProductElement>? products;
     int cartCount;
-    int totalValue;
+    int? totalValue;
     int wishilistCount;
 
     factory ViewCartModel.fromJson(Map<String, dynamic> json) => ViewCartModel(
@@ -29,7 +30,7 @@ class ViewCartModel {
     );
 
     Map<String, dynamic> toJson() => {
-        "products": List<dynamic>.from(products.map((x) => x.toJson())),
+        "products": List<dynamic>.from(products!.map((x) => x.toJson())),
         "cartCount": cartCount,
         "totalValue": totalValue,
         "wishilistCount": wishilistCount,
@@ -81,7 +82,7 @@ class ProductProduct {
     String description;
     String orginalPrice;
     String offerpercentage;
-    int offerPrice;
+    int? offerPrice;
 
     factory ProductProduct.fromJson(Map<String, dynamic> json) => ProductProduct(
         id: json["_id"],

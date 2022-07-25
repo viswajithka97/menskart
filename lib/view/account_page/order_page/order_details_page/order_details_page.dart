@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menskart/model/order_model/view_all_orders_model.dart';
 import 'package:menskart/view/account_page/order_page/order_details_page/widgets/order_container.dart';
 import 'package:menskart/view/account_page/order_page/order_details_page/widgets/order_details_container.dart';
 import 'package:menskart/view/account_page/order_page/order_details_page/widgets/order_paymnt_details.dart';
@@ -7,7 +8,8 @@ import 'package:menskart/view/core/space_constants.dart';
 import 'package:menskart/view/widgets/heading_text.dart';
 
 class OrderDetailsPage extends StatelessWidget {
-  const OrderDetailsPage({Key? key}) : super(key: key);
+  final Order orders;
+  const OrderDetailsPage({Key? key, required this.orders}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

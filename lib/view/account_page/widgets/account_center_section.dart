@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:menskart/controller/order_controller/order_controller.dart';
 import 'package:menskart/view/account_page/account_address_page/account_address_page.dart';
 import 'package:menskart/view/account_page/order_page/order_page.dart';
 import 'package:menskart/view/account_page/widgets/account_container_widget.dart';
@@ -10,12 +12,27 @@ class AccountCenterSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const[
+      children: [
         AccountContainerWidget(
-            heading: 'My Addresses', buttonText: 'VIEW ALL ADDRESSES',onPressed: AccountAddressPage(),),
+            heading: 'My Addresses',
+            buttonText: 'VIEW ALL ADDRESSES',
+            onPressed: () {
+              Get.to(AccountAddressPage());
+            }),
         kHeight10,
-        AccountContainerWidget(
-            heading: 'My Orders', buttonText: 'VIEW ALL ORDERS',onPressed: OrderPage(),),
+        GetBuilder<OrderController>(
+          init: OrderController(),
+          builder: (controller) {
+            return AccountContainerWidget(
+              heading: 'My Orders',
+              buttonText: 'VIEW ALL ORDERS',
+              onPressed: () {
+                controller.getAllOrders();
+                // Get.to(OrderPage());
+              },
+            );
+          },
+        ),
         kHeight10,
         AccountContainerWidget(
             heading: 'Wallet',

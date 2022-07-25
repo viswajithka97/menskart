@@ -33,7 +33,7 @@ class AuthenticationController extends GetxController {
               duration: const Duration(seconds: 3));
           final sharedPrefs = await SharedPreferences.getInstance();
           sharedPrefs.setString(loginKey, data.response.user.id);
-          // print(sharedPrefs.getString(loginKey));
+       
           log('==============user login success==================');
           isLoading.value = false;
           update();
@@ -75,7 +75,8 @@ class AuthenticationController extends GetxController {
     };
     try {
       final response = await AuthenicationApiCalls().signupCheck(signup);
-      if (response!.statusCode == 200 || response.statusCode == 201) {
+      log(response!.data);
+      if (response.statusCode == 200 || response.statusCode == 201) {
         final data = signUpModelFromJson(response.data);
 
         if (data.response.acknowledged) {

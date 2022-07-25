@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 
-import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:menskart/view/core/url_constants.dart';
@@ -15,7 +14,7 @@ class AuthenicationApiCalls {
     try {
       var response = await _dio.post(
         'login',
-        data: jsonEncode(login),
+        data: login,
       );
       log(response.data);
       return response;
@@ -31,7 +30,7 @@ class AuthenicationApiCalls {
   Future<Response<dynamic>?>  signupCheck(Map<String, dynamic> signup) async {
     try {
       log('signup: $signup');
-      var response = await _dio.post('signup', data: jsonEncode(signup));
+      var response = await _dio.post('signup', data: signup);
       log('========${response.data}============');
       return response;
     } catch (e) {

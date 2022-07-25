@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/cart_controller/cart_controller.dart';
@@ -23,6 +25,14 @@ class OrdersContainer extends StatelessWidget {
             width: double.infinity,
             child: Center(
               child: CircularProgressIndicator(),
+            ),
+          );
+        } else if (controller.products!.length == 0) {
+          return const SizedBox(
+            height: 200,
+            width: double.infinity,
+            child: const Center(
+              child: const Text('No items in cart,Please Add Some Items'),
             ),
           );
         } else {

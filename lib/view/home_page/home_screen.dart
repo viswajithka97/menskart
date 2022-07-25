@@ -3,6 +3,7 @@ import 'package:menskart/view/home_page/widgets/categoty_section.dart';
 import 'package:menskart/view/home_page/widgets/coupon_section.dart';
 import 'package:menskart/view/home_page/widgets/home_carousel.dart';
 import 'package:menskart/view/home_page/widgets/section_deal_day.dart';
+import 'package:menskart/view/home_page/widgets/section_latest_products.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class HomeScreen extends StatelessWidget {
           const DealOfTheDaySection(),
           CategorySection(),
           const CouponSection(),
-          const DealOfTheDaySection(),
+          const LatestProductsSection(),
         ],
       )),
     );

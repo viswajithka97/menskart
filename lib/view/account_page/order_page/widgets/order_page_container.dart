@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:menskart/controller/order_controller/order_controller.dart';
 import 'package:menskart/view/account_page/order_page/order_details_page/order_details_page.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';
-import 'package:menskart/view/core/space_constants.dart';
 
 class OrderPageContainer extends StatelessWidget {
   const OrderPageContainer({
@@ -13,70 +13,62 @@ class OrderPageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-        Get.to(const OrderDetailsPage());
-      },
-      child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: 6,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                height: 150,
-                width: double.infinity,
-                decoration:
-                    BoxDecoration(borderRadius: kBRadius15, color: kConBagColor),
-                child: Row(
-                  children: [
-                    Padding(
+    return GetBuilder<OrderController>(
+      init: OrderController(),
+      builder: (controller) {
+        return ListView.builder(
+            shrinkWrap: true,
+            itemCount: controller.orders!.length,
+            itemBuilder: (context, index) {
+              final orders = controller.orders![index];
+              return Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    // controller.getOrderDetails(orders.id);
+                    Get.to(OrderDetailsPage(orders:orders));
+                    // log(orders.products[index].item);
+                  },
+                  child: Container(
+                    height: 80,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: kBRadius15, color: kConBagColor),
+                    child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        height: 140,
-                        width: 140,
-                        decoration: BoxDecoration(
-                            borderRadius: kBRadius10,
-                            image: const DecorationImage(
-                                image: NetworkImage(
-                                    'https://www.rei.com/dam/content_team_010818_52427_htc_running_shoes_hero2_lg.jpg'),
-                                fit: BoxFit.cover)),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
                       child: SizedBox(
-                        height: 150,
+                        height: 80,
                         width: 210,
                         // color: kBlack,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Text(
-                              'Mens Regular Lace Up mens Sports Shoes',
+                              orders.id,
                               style: TextStyle(
                                 fontSize: 15,
                               ),
                             ),
-                            kHeight10,
+                            // kHeight10,
                             Text(
-                              'Dispatched',
+                              orders.status,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15,
                                   color: Colors.green),
                             ),
-                            kHeight10,
-                            Text('Expect Delivery On June 29th')
+                            // kHeight10,
+                            Text(orders.totalAmount.toString())
                           ],
                         ),
                       ),
-                    )
-                  ],
+                    ),
+                  ),
                 ),
-              ),
-            );
-          }),
+              );
+            });
+      },
     );
   }
 }

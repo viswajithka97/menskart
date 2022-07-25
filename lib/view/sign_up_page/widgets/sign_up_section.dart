@@ -72,8 +72,8 @@ class SignUpSection extends StatelessWidget {
               formfieldtext: 'Password',
               controller: _passwordController,
               validator: (value) {
-                if (value.toString().length < 6) {
-                  return 'Password must be atleast 6 characters';
+                if (value.toString().length < 4) {
+                  return 'Password must be atleast 4 characters';
                 }
 
                 if (value.toString().isEmpty) {
@@ -88,8 +88,8 @@ class SignUpSection extends StatelessWidget {
               controller: _confirmPasswordController,
               obsureText: true,
               validator: (value) {
-                if (value.toString().length < 6) {
-                  return 'Password must be atleast 6 characters';
+                if (value.toString().length < 4) {
+                  return 'Password must be atleast 4 characters';
                 }
                 if (value.toString().isEmpty) {
                   return 'Please enter your password';

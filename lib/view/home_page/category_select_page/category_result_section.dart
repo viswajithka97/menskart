@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:menskart/controller/cart_controller/cart_controller.dart';
 import 'package:menskart/controller/category_controller/category_controller.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';
@@ -118,21 +119,27 @@ class CategoryResultSection extends StatelessWidget {
                                   ],
                                 ),
                                 kHeight10,
-                                Container(
-                                    height: 30,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                        color: kLoginBlue,
-                                        borderRadius: kBRadius30),
-                                    child: MaterialButton(
-                                      onPressed: () {
-                                        Get.snackbar('', 'Added to Cart');
-                                      },
-                                      child: const Text(
-                                        "Add to Cart",
-                                        style: TextStyle(color: kWhite),
-                                      ),
-                                    ))
+                                GetBuilder<CartController>(
+                                  init: CartController(),
+                                  initState: (_) {},
+                                  builder: (cartController) {
+                                    return Container(
+                                        height: 30,
+                                        width: 100,
+                                        decoration: BoxDecoration(
+                                            color: kLoginBlue,
+                                            borderRadius: kBRadius30),
+                                        child: MaterialButton(
+                                          onPressed: () {
+                                          cartController.addToCart(category.id);
+                                          },
+                                          child: const Text(
+                                            "Add to Cart",
+                                            style: TextStyle(color: kWhite),
+                                          ),
+                                        ));
+                                  },
+                                )
                               ],
                             ),
                           ),
