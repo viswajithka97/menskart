@@ -31,10 +31,15 @@ class CartBottomSection extends StatelessWidget {
                     'Total No. of Items: ',
                     style: TextStyle(fontSize: 20),
                   ),
-                  Text(
-                    cartController.cartCount.toString(),
-                    style: const TextStyle(fontSize: 20),
-                  ),
+                  cartController.cartCount == null
+                      ? const Text(
+                          '0',
+                          style: TextStyle(fontSize: 20),
+                        )
+                      : Text(
+                          '${cartController.cartCount}',
+                          style: const TextStyle(fontSize: 20),
+                        ),
                 ],
               ),
             ),
@@ -92,10 +97,15 @@ class CartBottomSection extends StatelessWidget {
                     'Total Cost of Items: ',
                     style: TextStyle(fontSize: 20),
                   ),
-                  Text(
-                    '₹ ${cartController.totalValue}',
-                    style: const TextStyle(fontSize: 20),
-                  )
+                  cartController.totalValue == null
+                      ? const Text(
+                          '₹ 0',
+                          style: TextStyle(fontSize: 20),
+                        )
+                      : Text(
+                          '₹${cartController.totalValue}',
+                          style: const TextStyle(fontSize: 20),
+                        ),
                 ],
               ),
             ),

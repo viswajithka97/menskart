@@ -12,8 +12,8 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
-        children:  [
-         const LoginTopSection(),
+        children: [
+          const LoginTopSection(),
           LoginSection(),
         ],
       ),

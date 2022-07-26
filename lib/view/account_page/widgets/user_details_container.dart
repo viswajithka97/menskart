@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:menskart/controller/user_controller/user_controller.dart';
 import 'package:menskart/view/core/color_constants.dart';
 
@@ -12,8 +13,13 @@ class UserDetailsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<UserController>(
         init: UserController(),
-        initState: (_) {},
         builder: (controller) {
+          if (controller.address == null) {
+            return SizedBox(
+              height: 400,width: double.infinity,
+              child: Lottie.asset("assets/lottie/101751-loading-circle.json"),
+            );
+          }
           final address = controller.address![0];
           return Container(
             height: 225,

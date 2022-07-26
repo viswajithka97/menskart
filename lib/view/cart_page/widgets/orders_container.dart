@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/cart_controller/cart_controller.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
@@ -16,23 +17,24 @@ class OrdersContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(size!.height * .039);
     return GetBuilder<CartController>(
       init: CartController(),
       builder: (controller) {
         if (controller.products == null) {
-          return const SizedBox(
-            height: 200,
+          return SizedBox(
+            height: size!.height * .236,
             width: double.infinity,
-            child: Center(
+            child: const Center(
               child: CircularProgressIndicator(),
             ),
           );
-        } else if (controller.products!.length == 0) {
-          return const SizedBox(
-            height: 200,
+        } else if (controller.products!.isEmpty) {
+          return SizedBox(
+            height: size!.height * .236,
             width: double.infinity,
             child: const Center(
-              child: const Text('No items in cart,Please Add Some Items'),
+              child: const Text('No items in Cart,\nPlease Add Some Items'),
             ),
           );
         } else {
@@ -49,7 +51,7 @@ class OrdersContainer extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        height: 150,
+                        height: size!.height * .1736,
                         width: double.infinity,
                         decoration: BoxDecoration(
                             borderRadius: kBRadius15, color: kConBagColor),
@@ -58,8 +60,8 @@ class OrdersContainer extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Container(
-                                height: 140,
-                                width: 140,
+                                height: size!.height * .1646,
+                                width: size!.width * .357,
                                 decoration: BoxDecoration(
                                     borderRadius: kBRadius10,
                                     image: DecorationImage(
@@ -71,8 +73,8 @@ class OrdersContainer extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 10.0),
                               child: SizedBox(
-                                height: 150,
-                                width: 210,
+                                height: size!.height * .1763,
+                                width: size!.height * .247,
                                 // color: kBlack,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,20 +159,41 @@ class OrdersContainer extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(right: 8.0),
                                           child: ContainerButton(
-                                              height: 33,
-                                              width: 80,
+                                              height: size!.height * .039,
+                                              width: size!.width * .204,
                                               containerIcon: Icons.delete,
                                               iconStyle: 15,
                                               radius: kBRadius30,
                                               onPressed: () {
-                                                controller
-                                                    .deleteProductFromCart(
-                                                        product.id,
-                                                        controller
-                                                            .products![index]
-                                                            .id);
-                                                controller.getCartItems();
-                                                controller.update();
+                                                Get.defaultDialog(
+                                                  title: 'Delete Item',
+                                                  content: const Text(
+                                                      'Are you sure you want to delete this item?'),
+                                                  confirm: TextButton(
+                                                    onPressed: () {
+                                                      controller
+                                                          .deleteProductFromCart(
+                                                              product.id,
+                                                              controller
+                                                                  .products![
+                                                                      index]
+                                                                  .id);
+
+                                                      // controller.update();
+                                                      controller.getCartItems();
+                                                      // controller.update();
+
+                                                      Get.back();
+                                                    },
+                                                    child: const Text('Yes'),
+                                                  ),
+                                                  cancel: TextButton(
+                                                    onPressed: () {
+                                                      Get.back();
+                                                    },
+                                                    child: const Text('No'),
+                                                  ),
+                                                );
                                               },
                                               buttonText: 'Delete'),
                                         ),

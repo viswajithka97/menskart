@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:menskart/controller/address_controller/address_controller.dart';
 import 'package:menskart/controller/place_order_controller/place_order_controller.dart';
 import 'package:menskart/view/address_page/edit_address/edit_address_page.dart';
@@ -19,8 +20,12 @@ class CheckoutAddressSelect extends StatelessWidget {
       init: AddressController(),
       builder: (controller) {
         if (controller.address == null) {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: SizedBox(
+              height: 400,
+              width: double.infinity,
+              child: Lottie.asset("assets/lottie/101751-loading-circle.json"),
+            ),
           );
         } else {
           return ListView.builder(
@@ -36,8 +41,7 @@ class CheckoutAddressSelect extends StatelessWidget {
                     builder: (placeOrder) {
                       return GestureDetector(
                         onTap: () {
-                          placeOrder.containerColorChange(index,address);
-                         
+                          placeOrder.containerColorChange(index, address);
                         },
                         child: Container(
                           height: MediaQuery.of(context).size.width * 0.5,

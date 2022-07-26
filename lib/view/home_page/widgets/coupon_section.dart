@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/view/core/space_constants.dart';
 
 class CouponSection extends StatelessWidget {
@@ -41,13 +42,14 @@ class CouponSection extends StatelessWidget {
                 });
           },
           child: Container(
-            height: 180,
+            height: size!.height * 0.212,
             width: double.infinity,
             decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/coupon.jpg'),
-                    filterQuality: FilterQuality.high,
-                    fit: BoxFit.cover)),
+              image: DecorationImage(
+                  image: AssetImage('assets/images/coupon.jpg'),
+                  filterQuality: FilterQuality.high,
+                  fit: BoxFit.cover),
+            ),
           ),
         )
       ],

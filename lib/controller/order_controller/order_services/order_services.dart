@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:menskart/view/core/url_constants.dart';
 
@@ -21,6 +23,16 @@ class OrderServices {
     print(orderId);
     try {
       final response = await dio.get('view-order-products/$orderId');
+      return response;
+    } catch (e) {}
+    return null;
+  }
+
+  Future<Response<dynamic>?> cancelOrder(String orderId) async {
+    print(orderId);
+    try {
+      final response = await dio.post('cancel-orders',
+          data: jsonEncode({'orderId': orderId}));
       return response;
     } catch (e) {}
     return null;

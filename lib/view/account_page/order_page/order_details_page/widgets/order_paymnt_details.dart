@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:menskart/model/order_model/view_all_orders_model.dart';
 import 'package:menskart/view/core/color_constants.dart';
 
 class OrderPaymentDetails extends StatelessWidget {
+  final Order? order;
   const OrderPaymentDetails({
     Key? key,
+    required this.order,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final address = order!.deliveryDetails;
+
     return Container(
       height: 200,
       width: double.infinity,
@@ -19,13 +24,12 @@ class OrderPaymentDetails extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   'Payment Method',
-                  style: TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                Text('Cash on Delivery',
+                Text(order!.paymentMethode,
                     style: TextStyle(
                       fontSize: 20,
                     )),
@@ -36,10 +40,10 @@ class OrderPaymentDetails extends StatelessWidget {
             thickness: 1,
             color: kBlack,
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 10.0),
             child: Text(
-              'Viswajith K A\nHouse No: 12\nAiswarya Nagar \nThammadiyill Temple Road\nThripunitura\nKerala - 682301\nPhone: +91 9447617999',
+              '${order!.user}\nHouse No: ${address.houseNo}\n${address.address} \n${address.city}\n${address.state} - ${address.pincode}\nPhone: +91 ${address.mobile}',
               style: TextStyle(
                 fontSize: 18,
               ),

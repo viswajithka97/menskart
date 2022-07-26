@@ -13,7 +13,7 @@ class WishListScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-         const    HeadingText(
+            const HeadingText(
               headingText: 'My Wishlist',
             ),
             // kHeight10,

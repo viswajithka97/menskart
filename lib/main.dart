@@ -3,7 +3,8 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:menskart/view/splash_screen/splash_screen.dart';
 
-const String loginKey ='' ;
+const String loginKey = '';
+Size? size;
 
 void main() {
   runApp(const MyApp());
@@ -20,5 +21,4 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
     );
   }
-  
 }

@@ -1,21 +1,23 @@
-
 import 'package:flutter/cupertino.dart';
+import 'package:menskart/model/order_model/order_details.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
 
 class OrderContainer extends StatelessWidget {
+  final List<ProductElement>? product;
   const OrderContainer({
     Key? key,
+    required this.product,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final products = product![0].product;
     return Container(
       height: 150,
       width: double.infinity,
-      decoration: BoxDecoration(
-          borderRadius: kBRadius15, color: kConBagColor),
+      decoration: BoxDecoration(borderRadius: kBRadius15, color: kConBagColor),
       child: Row(
         children: [
           Padding(
@@ -24,11 +26,12 @@ class OrderContainer extends StatelessWidget {
               height: 140,
               width: 140,
               decoration: BoxDecoration(
-                  borderRadius: kBRadius10,
-                  image: const DecorationImage(
-                      image: NetworkImage(
-                          'https://www.rei.com/dam/content_team_010818_52427_htc_running_shoes_hero2_lg.jpg'),
-                      fit: BoxFit.cover)),
+                borderRadius: kBRadius10,
+                image: DecorationImage(
+                    image: NetworkImage(
+                        'http://menscart.shop/product-images/${products.id}.jpg'),
+                    fit: BoxFit.cover),
+              ),
             ),
           ),
           Padding(
@@ -39,9 +42,9 @@ class OrderContainer extends StatelessWidget {
               // color: kBlack,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
-                    'Mens Regular Lace Up mens Sports Shoes',
+                    products.description,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -49,7 +52,7 @@ class OrderContainer extends StatelessWidget {
                   ),
                   kHeight10,
                   Text(
-                    'Qty : 1',
+                    'Qty : ${product![0].quantity}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,

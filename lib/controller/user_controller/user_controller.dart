@@ -22,7 +22,9 @@ class UserController extends GetxController {
           update();
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      
+    }
   }
 
   @override

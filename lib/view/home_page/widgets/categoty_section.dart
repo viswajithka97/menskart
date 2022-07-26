@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/category_controller/category_controller.dart';
 import 'package:menskart/controller/home_page_controller/home_page_controller.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
 
@@ -18,16 +19,16 @@ class CategorySection extends StatelessWidget {
           init: HomePageController(),
           builder: (controller) {
             if (controller.category == null) {
-              return const SizedBox(
-                height: 200,
+              return SizedBox(
+                height: size!.height * .236,
                 width: double.infinity,
-                child: Center(
+                child: const Center(
                   child: CircularProgressIndicator(),
                 ),
               );
             }
             return Container(
-              height: 250,
+              height: size!.height * .294,
               width: double.infinity,
               color: kBackgroundGrey,
               child: ListView.separated(
@@ -37,8 +38,8 @@ class CategorySection extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        categoryController
-                            .getCategory(controller.category![index].category.toString());
+                        categoryController.getCategory(
+                            controller.category![index].category.toString());
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

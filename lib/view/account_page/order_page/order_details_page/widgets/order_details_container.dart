@@ -1,10 +1,15 @@
-
 import 'package:flutter/cupertino.dart';
+import 'package:menskart/model/order_model/order_details.dart';
+import 'package:menskart/model/order_model/view_all_orders_model.dart';
 import 'package:menskart/view/account_page/order_page/order_details_page/widgets/order_details_text_widget.dart';
 
 class OrderDetailsContainer extends StatelessWidget {
+  final Order? order;
+  final List<ProductElement>? product;
   const OrderDetailsContainer({
     Key? key,
+    required this.order,
+    required this.product,
   }) : super(key: key);
 
   @override
@@ -14,18 +19,18 @@ class OrderDetailsContainer extends StatelessWidget {
       width: double.infinity,
       // color: kConBagColor,
       child: Column(
-        children: const[
-           OrderDetailsTextWidget(
+        children: [
+          OrderDetailsTextWidget(
             firstText: 'Order Placed On',
-            secondText: 'June 29th',
+            secondText: order!.orderDate,
           ),
-           OrderDetailsTextWidget(
+          OrderDetailsTextWidget(
             firstText: 'Order Id ',
-            secondText: '404-7991667-7972313',
+            secondText: product![0].id,
           ),
-           OrderDetailsTextWidget(
+          OrderDetailsTextWidget(
             firstText: 'Order Total',
-            secondText: '₹ 2599',
+            secondText: '₹ ${order!.totalAmount}',
           ),
         ],
       ),

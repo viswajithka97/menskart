@@ -1,3 +1,7 @@
+// ignore_for_file: unrelated_type_equality_checks
+
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:menskart/main.dart';
@@ -10,6 +14,8 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
+
     checkUserLogin();
     return Container();
   }
@@ -17,7 +23,7 @@ class SplashScreen extends StatelessWidget {
   Future<void> checkUserLogin() async {
     final sharedPrefs = await SharedPreferences.getInstance();
     final userSignIn = sharedPrefs.getString(loginKey);
-    print(userSignIn);
+    log(userSignIn.toString());
 
     if (userSignIn == null || userSignIn == false) {
       Get.offAll(() => const SelectLoginOption());

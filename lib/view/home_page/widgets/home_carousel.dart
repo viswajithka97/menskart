@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/home_page_controller/home_page_controller.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/view/core/border_radius.dart';
 
 class TopSectionCarousel extends StatelessWidget {
@@ -15,13 +16,12 @@ class TopSectionCarousel extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: GetBuilder<HomePageController>(
           init: HomePageController(),
-          initState: (_) {},
           builder: (controller) {
             if (controller.banner == null) {
-              return const SizedBox(
-                height: 200,
+              return SizedBox(
+                height: size!.height * .236,
                 width: double.infinity,
-                child: Center(
+                child: const Center(
                   child: CircularProgressIndicator(),
                 ),
               );
@@ -31,25 +31,18 @@ class TopSectionCarousel extends StatelessWidget {
                 borderRadius: kBRadius10,
               ),
               width: double.infinity,
-              height: 150,
+              height: size!.height * .1763,
               child: CarouselSlider.builder(
                   options: CarouselOptions(
-                    height: 200.0,
+                    height: size!.height * .236,
                     enlargeCenterPage: true,
-
                     autoPlay: true,
-                    // aspectRatio: 3.0/2.0,
-                    // autoPlayCurve: Curves.fastLinearToSlowEaseIn,
-                    // enableInfiniteScroll: true,
-
-                    // autoPlayAnimationDuration: const Duration(milliseconds: 500),
                     viewportFraction: 1,
                   ),
                   itemCount: controller.banner!.length,
                   itemBuilder: (context, itemindex, pageViewIndex) {
                     return Container(
                       width: double.infinity,
-                      // height: 300,
                       decoration: BoxDecoration(
                         borderRadius: kBRadius10,
                         image: DecorationImage(
@@ -59,12 +52,6 @@ class TopSectionCarousel extends StatelessWidget {
                             fit: BoxFit.fill,
                             alignment: Alignment.center),
                       ),
-                      // child: Image(
-                      //   height: 600,
-                      //   image: NetworkImage(
-                      //       'http://menscart.shop/banner-images/${controller.banner![itemindex].id}.jpg'),
-                      //   fit: BoxFit.cover,
-                      // ),
                     );
                   }),
             );

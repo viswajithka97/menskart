@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/order_controller/order_controller.dart';
@@ -25,8 +24,8 @@ class OrderPageContainer extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: GestureDetector(
                   onTap: () {
-                    // controller.getOrderDetails(orders.id);
-                    Get.to(OrderDetailsPage(orders:orders));
+                    controller.getOrderDetails(orders.id);
+                    Get.to(OrderDetailsPage(orders: orders));
                     // log(orders.products[index].item);
                   },
                   child: Container(

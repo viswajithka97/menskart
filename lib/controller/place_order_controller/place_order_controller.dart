@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:menskart/controller/place_order_controller/place_order_services/place_order_services.dart';
 import 'package:menskart/main.dart';
 import 'package:menskart/model/address_model/get_all_address_model.dart';
@@ -8,7 +9,6 @@ import 'package:menskart/model/coupon_model.dart/apply_coupon_model.dart';
 import 'package:menskart/model/payment/cod_model.dart';
 import 'package:menskart/view/checkout_page/widgets/price_details_widget.dart';
 import 'package:menskart/view/core/color_constants.dart';
-import 'package:menskart/view/home_page/home_screen.dart';
 import 'package:menskart/view/main_page/main_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,7 +43,10 @@ class PlaceOrderController extends GetxController {
         if (select == "COD") {
           final data = codModelFromJson(response.data);
           if (data.codSuccess) {
-            Get.snackbar("Success", "Your Order has been Placed");
+            Get.defaultDialog(
+                content: LottieBuilder.asset(
+                    "assets/lottie/104369-check-motion.json"));
+            // Get.snackbar("Success", "Your Order has been Placed");
             Get.offAll(MainPage());
           }
         }

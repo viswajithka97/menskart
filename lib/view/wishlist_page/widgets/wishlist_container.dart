@@ -17,7 +17,6 @@ class WishlistContainer extends StatelessWidget {
     return GetBuilder<WishlistController>(
       init: WishlistController(),
       builder: (controller) {
-        print("buildinmg");
         return controller.wishlistcount == 0
             ? const Center(
                 child: Text(
@@ -101,7 +100,7 @@ class WishlistContainer extends StatelessWidget {
                                                 containerIcon:
                                                     Icons.fast_forward_rounded,
                                                 radius: kBRadius30,
-                                                onPressed: (){},
+                                                onPressed: () {},
                                                 buttonText: 'But Now'),
                                             const Spacer(),
                                             IconButton(

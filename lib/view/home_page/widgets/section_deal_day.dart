@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/home_page_controller/home_page_controller.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
 import 'package:menskart/view/home_page/home_page_detail_view/home_page_view.dart';
-import 'package:menskart/view/home_page/product_detail_view/product_detail_view_page.dart';
 import 'package:menskart/view/widgets/rating_star_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -27,7 +27,7 @@ class DealOfTheDaySection extends StatelessWidget {
             if (controller.products == null) {
               return SizedBox(
                   width: double.infinity,
-                  height: 280.0,
+                  height: size!.height * 0.33,
                   child: Column(mainAxisSize: MainAxisSize.max, children: [
                     Expanded(
                       child: Shimmer.fromColors(
@@ -37,8 +37,8 @@ class DealOfTheDaySection extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              width: 150.0,
-                              height: 280.0,
+                              width: size!.width * 0.382,
+                              height: size!.height * 0.33,
                               color: Colors.white,
                             ),
                             const Padding(
@@ -83,7 +83,7 @@ class DealOfTheDaySection extends StatelessWidget {
                   ]));
             }
             return Container(
-              height: 280,
+              height: size!.height * 0.33,
               width: double.infinity,
               color: kBackgroundGrey,
               alignment: Alignment.centerLeft,
@@ -93,14 +93,15 @@ class DealOfTheDaySection extends StatelessWidget {
                   itemCount: controller.products!.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: (){
-                        Get.to(()=>HomePageView(productId: controller.products![index]));
+                      onTap: () {
+                        Get.to(() => HomePageView(
+                            productId: controller.products![index]));
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
-                          height: 280,
-                          width: 150,
+                          height: size!.height * 0.33,
+                          width: size!.width * 0.382,
                           color: kWhite,
                           child: Padding(
                             padding:
@@ -112,8 +113,8 @@ class DealOfTheDaySection extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 10.0),
                                   child: Container(
-                                    height: 150,
-                                    width: 150,
+                                    height: size!.width * 0.382,
+                                    width: size!.height * 0.1763,
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                         image: NetworkImage(
@@ -124,7 +125,7 @@ class DealOfTheDaySection extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 38,
+                                  height: size!.height * 0.045,
                                   child: Text(
                                     controller.products![index].description
                                         .toUpperCase(),
