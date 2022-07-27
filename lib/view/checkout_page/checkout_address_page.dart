@@ -8,22 +8,24 @@ import 'package:menskart/view/checkout_page/widgets/price_details_widget.dart';
 import 'package:menskart/view/widgets/heading_text.dart';
 
 class CheckoutAddressPage extends StatelessWidget {
- 
-  const CheckoutAddressPage({Key? key,}) : super(key: key);
+  const CheckoutAddressPage({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      
+        centerTitle: true,
+        title: const Text('Checkout Page'),
       ),
       body: SafeArea(
         child: ListView(
-          children:const [
-             CheckoutTopSection(),
-             CheckoutAddressSelect(),
-             HeadingText(headingText: 'Price Details'),
+          children: const [
+            CheckoutTopSection(),
+            CheckoutAddressSelect(),
+            HeadingText(headingText: 'Price Details'),
             PriceDetailsWidgets(),
-             PaymentSection()
+            PaymentSection()
           ],
         ),
       ),

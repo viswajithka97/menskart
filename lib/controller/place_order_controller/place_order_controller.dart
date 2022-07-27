@@ -15,7 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PlaceOrderController extends GetxController {
   Rx<int>? offerPrice;
   String? select;
-  var selectIndex = 0;
+  int? selectIndex;
   AddressClass? address;
 
   radiobuttonSelected(String value) {

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:menskart/view/core/color_constants.dart';
+import 'package:menskart/view/core/space_constants.dart';
 
 class TextandFormFieldWidget extends StatelessWidget {
   final headingText;
@@ -31,18 +32,19 @@ class TextandFormFieldWidget extends StatelessWidget {
             child: TextFormField(
               controller: controller,
               decoration: InputDecoration(
-                fillColor: kBackgroundGrey,
+                fillColor: kBackgroundGrey.withOpacity(0.5),
                 filled: true,
                 border: const OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                   borderSide: const BorderSide(width: 0, color: kTransparent),
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 labelText: hintText,
               ),
             ),
           ),
         ),
+        kHeight10,
       ],
     );
   }

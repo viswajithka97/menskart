@@ -19,13 +19,14 @@ class CategorySelect extends StatelessWidget {
           ),
         ],
       ),
-      child: const Scaffold(
+      child: Scaffold(
         backgroundColor: kTransparent,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50),
-          child: AppBarWidget(),
-        ),
-        body: CategoryResultSection(),
+        appBar: AppBar(),
+        // appBar: PreferredSize(
+        //   preferredSize: Size.fromHeight(50),
+        //   child: AppBarWidget(),
+        // ),
+        body: const CategoryResultSection(),
       ),
     );
   }

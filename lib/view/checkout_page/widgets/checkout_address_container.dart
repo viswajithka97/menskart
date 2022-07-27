@@ -24,7 +24,7 @@ class CheckoutAddressSelect extends StatelessWidget {
             child: SizedBox(
               height: 400,
               width: double.infinity,
-              child: Lottie.asset("assets/lottie/101751-loading-circle.json"),
+              child: Lottie.asset("assets/lottie/loading.json"),
             ),
           );
         } else {
@@ -49,7 +49,7 @@ class CheckoutAddressSelect extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: placeOrder.selectIndex == index
-                                ? const Color.fromARGB(255, 112, 206, 115)
+                                ? const Color.fromARGB(255, 208, 241, 209)
                                 : kBackgroundGrey,
                           ),
                           child: Padding(

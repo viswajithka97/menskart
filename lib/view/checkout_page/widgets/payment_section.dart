@@ -28,7 +28,7 @@ class PaymentSection extends StatelessWidget {
           buttonText: 'PAYPAL',
           radioButtonText: 'Pay Pal',
         ),
-        kHeight10,
+        kHeight20,
         Center(
           child: GetBuilder<PlaceOrderController>(
             init: PlaceOrderController(),
@@ -43,7 +43,8 @@ class PaymentSection extends StatelessWidget {
               );
             },
           ),
-        )
+        ),
+        kHeight10
       ],
     );
   }

@@ -16,8 +16,9 @@ class UserDetailsContainer extends StatelessWidget {
         builder: (controller) {
           if (controller.address == null) {
             return SizedBox(
-              height: 400,width: double.infinity,
-              child: Lottie.asset("assets/lottie/101751-loading-circle.json"),
+              height: 400,
+              width: double.infinity,
+              child: Lottie.asset("assets/lottie/loading.json"),
             );
           }
           final address = controller.address![0];

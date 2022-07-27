@@ -17,13 +17,12 @@ class AccountCenterSection extends StatelessWidget {
             heading: 'My Addresses',
             buttonText: 'VIEW ALL ADDRESSES',
             onPressed: () {
-              Get.to(AccountAddressPage());
+              Get.to(const AccountAddressPage());
             }),
         kHeight10,
         GetBuilder<OrderController>(
           init: OrderController(),
           builder: (controller) {
-            
             return AccountContainerWidget(
               heading: 'My Orders',
               buttonText: 'VIEW ALL ORDERS',
@@ -35,7 +34,7 @@ class AccountCenterSection extends StatelessWidget {
           },
         ),
         kHeight10,
-        AccountContainerWidget(
+        const AccountContainerWidget(
             heading: 'Wallet',
             subHeading: '₹ 2250',
             buttonText: 'VIEW MY WALLET'),

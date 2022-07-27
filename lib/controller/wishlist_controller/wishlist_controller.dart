@@ -9,7 +9,7 @@ import 'package:menskart/model/wishlist_model/wishlist_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WishlistController extends GetxController {
-  List<WishilistItem> wishlist = [];
+  List<WishilistItem>? wishlist;
   int? wishlistcount = 0;
   var isAdded = false.obs;
 
