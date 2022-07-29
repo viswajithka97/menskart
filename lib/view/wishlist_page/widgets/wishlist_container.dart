@@ -8,7 +8,7 @@ import 'package:menskart/view/core/url_constants.dart';
 import 'package:menskart/view/widgets/container_button.dart';
 
 class WishlistContainer extends StatelessWidget {
-  WishlistContainer({
+  const WishlistContainer({
     Key? key,
   }) : super(key: key);
   // final cont = Get.put(WishlistController());

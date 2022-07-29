@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:menskart/controller/home_page_controller/home_page_services/home_page_api_services.dart';
+import 'package:menskart/model/home_page/all_coupon_model.dart';
 import 'package:menskart/model/home_page/home_page_model.dart';
 
 class HomePageController extends GetxController {
@@ -8,8 +9,9 @@ class HomePageController extends GetxController {
   List<Banner>? banner;
   List<Category>? category;
   List<TrendingProduct>? trendingProducts;
+  List<Coupon>? coupons;
 
-  Future<List<HomePageModel>?> getData() async {
+  getData() async {
     try {
       final response = await HomePageApiServices().getAllData();
 
@@ -31,9 +33,24 @@ class HomePageController extends GetxController {
     return null;
   }
 
+  getAllCoupons() async {
+    try {
+      final response = await HomePageApiServices().getAllCoupons();
+
+      log(response!.data.toString());
+      if (response.statusCode == 200) {
+        final data = allCouponModleFromJson(response.data);
+        coupons = data.coupon.obs;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   @override
   void onInit() {
     getData();
+    getAllCoupons();
     super.onInit();
   }
 }

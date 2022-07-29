@@ -72,7 +72,20 @@ class CheckoutAddressSelect extends StatelessWidget {
                                     Visibility(
                                       visible: visibility,
                                       child: GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                            Get.defaultDialog(
+                                                title: 'Delete Address',
+                                                content: const Text(
+                                                    'Are you sure you want to delete this address?'),
+                                                onConfirm: () {
+                                                  controller.deleteAddress(
+                                                      address.useraddress);
+                                                  Get.back();
+                                                },
+                                                onCancel: () {
+                                                  Get.back();
+                                                });
+                                          },
                                           child: const Icon(Icons.delete)),
                                     ),
                                   ],

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:menskart/controller/address_controller/address_services/address_services.dart';
 import 'package:menskart/main.dart';
 import 'package:menskart/model/address_model/add_address_model.dart';
+import 'package:menskart/model/address_model/delete_address_model.dart';
 import 'package:menskart/model/address_model/edit_address_model.dart';
 import 'package:menskart/model/address_model/get_all_address_model.dart';
 import 'package:menskart/view/core/color_constants.dart';
@@ -105,6 +106,39 @@ class AddressController extends GetxController {
               backgroundColor: kGreen,
               colorText: kWhite,
               margin: const EdgeInsets.all(10));
+          getAddress();
+          update();
+        } else {
+          Get.snackbar('Error', "Please Check your Details",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.red,
+              colorText: kWhite,
+              margin: const EdgeInsets.all(10));
+        }
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  deleteAddress(String addressId) async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    final userId = sharedPrefs.getString(loginKey);
+
+    try {
+      final response =
+          await AddressServices().deleteAddress(addressId, userId!);
+      log(response!.data);
+      if (response.statusCode == 200) {
+        final data = deleteAddressModelFromJson(response.data);
+
+        if (data.resp.acknowledged) {
+          Get.snackbar('Succes', "Yiour address has been deleted successfully",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: kGreen,
+              colorText: kWhite,
+              margin: const EdgeInsets.all(10));
+
           getAddress();
           update();
         } else {

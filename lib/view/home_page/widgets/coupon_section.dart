@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:menskart/controller/home_page_controller/home_page_controller.dart';
 import 'package:menskart/main.dart';
 import 'package:menskart/view/core/space_constants.dart';
 
@@ -21,10 +23,43 @@ class CouponSection extends StatelessWidget {
                       'You Have Unlocked',
                       style: TextStyle(fontSize: 15),
                     ),
-                    content: const Text(
-                      'Coupon Code',
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    content: GetBuilder<HomePageController>(
+                      init: HomePageController(),
+                      builder: (controller) {
+                        if (controller.coupons == null) {
+                          return const SizedBox(
+                            height: 150,
+                            width: 500,
+                            child: Center(
+                                child:
+                                    Center(child: CircularProgressIndicator())),
+                          );
+                        }
+                        return SizedBox(
+                          height: 150,
+                          width: 500,
+                          child: ListView.builder(
+                              itemCount: 3,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  onTap: () {
+                                    Clipboard.setData(ClipboardData(
+                                        text:
+                                            controller.coupons![index].coupon));
+
+                                    Get.back();
+                                    Get.snackbar('Copied', 'Coupon Copied');
+                                  },
+                                  title: Text(
+                                    controller.coupons![index].coupon,
+                                    style: const TextStyle(fontSize: 15),
+                                  ),
+                                  trailing: Text("${controller.coupons![index].discount} % off"),
+                                );
+                              }),
+                        );
+                      },
                     ),
                     actions: [
                       TextButton(

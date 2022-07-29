@@ -10,6 +10,7 @@ import 'package:menskart/model/payment/cod_model.dart';
 import 'package:menskart/view/checkout_page/widgets/price_details_widget.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/main_page/main_page.dart';
+import 'package:menskart/view/main_page/widgets/bottom_navigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PlaceOrderController extends GetxController {
@@ -43,11 +44,49 @@ class PlaceOrderController extends GetxController {
         if (select == "COD") {
           final data = codModelFromJson(response.data);
           if (data.codSuccess) {
-            Get.defaultDialog(
-                content: LottieBuilder.asset(
-                    "assets/lottie/104369-check-motion.json"));
-            // Get.snackbar("Success", "Your Order has been Placed");
-            Get.offAll(MainPage());
+            showGeneralDialog(
+              context: Get.context!,
+              barrierLabel: "Barrier",
+              barrierDismissible: true,
+              barrierColor: Colors.black.withOpacity(0.5),
+              transitionDuration: const Duration(milliseconds: 1500),
+              pageBuilder: (_, __, ___) {
+                return Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      indexChangedNotifier.value = 0;
+                      Get.offAll(MainPage());
+                    },
+                    child: Container(
+                      height: 240,
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(40)),
+                      child: SizedBox.expand(
+                          child: Lottie.asset(
+                              'assets/lottie/104369-check-motion.json')),
+                    ),
+                  ),
+                );
+              },
+              transitionBuilder: (_, anim, __, child) {
+                Tween<Offset> tween;
+                if (anim.status == AnimationStatus.reverse) {
+                  tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
+                } else {
+                  tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
+                }
+
+                return SlideTransition(
+                  position: tween.animate(anim),
+                  child: FadeTransition(
+                    opacity: anim,
+                    child: child,
+                  ),
+                );
+              },
+            );
           }
         }
       }

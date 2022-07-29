@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -31,10 +32,23 @@ class AddressServices {
     return null;
   }
 
-Future<Response<dynamic>?>  editAddress(Map<String, dynamic> address, String adressId) async {
-   
+  Future<Response<dynamic>?> editAddress(
+      Map<String, dynamic> address, String adressId) async {
     try {
       final response = await dio.post('edit-address/$adressId', data: address);
+      return response;
+    } catch (e) {
+      log(e.toString());
+    }
+    return null;
+  }
+
+  Future<Response<dynamic>?> deleteAddress(
+      String addressId, String userId) async {
+    try {
+      final response = await dio.get(
+        'delete-address/$addressId/$userId',
+      );
       return response;
     } catch (e) {
       log(e.toString());

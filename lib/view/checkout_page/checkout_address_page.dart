@@ -20,11 +20,11 @@ class CheckoutAddressPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          children: const [
-            CheckoutTopSection(),
-            CheckoutAddressSelect(),
-            HeadingText(headingText: 'Price Details'),
-            PriceDetailsWidgets(),
+          children: [
+            const CheckoutTopSection(),
+            const CheckoutAddressSelect(),
+            const HeadingText(headingText: 'Price Details'),
+            const PriceDetailsWidgets(),
             PaymentSection()
           ],
         ),

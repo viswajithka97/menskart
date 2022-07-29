@@ -22,27 +22,36 @@ class LocationController extends GetxController {
   double? longitude;
 
   getCurrentLocation() async {
-    Position position = await goToLocation();
-    googleMapController.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(
-            target: LatLng(position.latitude, position.longitude),
-            zoom: 14.0)));
-    markers.clear();
-    markers.add(Marker(
-        markerId: const MarkerId('Current Location'),
-        position: LatLng(position.latitude, position.longitude)));
-    update();
-    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-        .then((Position position) {
-      // currentPosition = position;
-      latitude = position.latitude;
-      longitude = position.longitude;
+    try {
+      // if () {
+
+      // }
+      Position position = await goToLocation();
+      googleMapController.animateCamera(CameraUpdate.newCameraPosition(
+          CameraPosition(
+              target: LatLng(position.latitude, position.longitude),
+              zoom: 14.0)));
+      markers.clear();
+      markers.add(Marker(
+          markerId: const MarkerId('Current Location'),
+          position: LatLng(position.latitude, position.longitude)));
       update();
-      getAddressfromLatLang();
-      update();
-    }).catchError((e) {
-      log(e);
-    });
+      Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+          .then((Position position) {
+        // currentPosition = position;
+        latitude = position.latitude;
+        longitude = position.longitude;
+        update();
+        getAddressfromLatLang();
+        update();
+      }).catchError((e) {
+        // log(e);
+      });
+    } catch (e) {
+      if (e is LocationServiceDisabledException) {
+        log(e.toString());
+      }
+    }
   }
 
   getAddressfromLatLang() async {
@@ -60,7 +69,7 @@ class LocationController extends GetxController {
       update();
       return p;
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
   }
 
