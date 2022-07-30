@@ -6,12 +6,12 @@ import 'package:menskart/main.dart';
 import 'package:menskart/model/order_model/cancel_order_model.dart';
 import 'package:menskart/model/order_model/order_details.dart';
 import 'package:menskart/model/order_model/view_all_orders_model.dart';
-import 'package:menskart/view/account_page/order_page/order_details_page/order_details_page.dart';
-import 'package:menskart/view/account_page/order_page/order_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OrderController extends GetxController {
   List<Order>? orders;
+  GetAllOrdersModelFromJson? checkResponse;
+  int? orderlength;
   List<ProductElement>? products;
 
   getAllOrders() async {
@@ -21,15 +21,19 @@ class OrderController extends GetxController {
       final response = await OrderServices().getAllOrders(userId!);
       log(response!.data);
       if (response.statusCode == 200) {
-        final data = getAllOrdersModelFromJson(response.data);
-        if (data.orders.isNotEmpty) {
-          orders = data.orders.obs;
-          Get.to(const OrderPage());
+        final data = getAllOrdersModelFromJsonFromJson(response.data);
+        if (data.orders != null) {
+          checkResponse = data;
+          orders = data.orders.orders;
+          orderlength = data.orders.orderLength;
+
+          print("store aayi");
+          log(data.toString());
           update();
         }
       }
     } catch (e) {
-      log(e.toString());
+      log(" catch =-================$e");
     }
   }
 
@@ -64,5 +68,11 @@ class OrderController extends GetxController {
     } catch (e) {
       log(e.toString());
     }
+  }
+
+  @override
+  void onInit() {
+    getAllOrders();
+    super.onInit();
   }
 }

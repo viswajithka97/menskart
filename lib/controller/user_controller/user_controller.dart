@@ -14,7 +14,7 @@ class UserController extends GetxController {
     final userId = sharedPrefs.getString(loginKey);
     try {
       final response = await UserServices().getProfileData(userId!);
-      log(response!.data);
+      log("-----------${response!.data}");
       if (response.statusCode == 200) {
         final data = userProfileModelFromJson(response.data);
         if (data.user.isNotEmpty) {
@@ -23,7 +23,7 @@ class UserController extends GetxController {
         }
       }
     } catch (e) {
-      
+      log(e.toString());
     }
   }
 

@@ -20,6 +20,12 @@ class UserDetailsContainer extends StatelessWidget {
               width: double.infinity,
               child: Lottie.asset("assets/lottie/loading.json"),
             );
+          } else if (controller.address!.isEmpty) {
+            return const SizedBox(
+              height: 225,
+              width: double.infinity,
+              child: Center(child: Text("No User Data Found")),
+            );
           }
           final address = controller.address![0];
           return Container(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:menskart/view/core/url_constants.dart';
 
@@ -10,11 +12,12 @@ class UserServices {
   );
 
   getProfileData(String userId) async {
-    print('called');
     try {
       final response = await dio.get('user-profile/$userId');
       return response;
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
     return null;
   }
 }

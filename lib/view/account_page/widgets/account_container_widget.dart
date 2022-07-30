@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
@@ -9,10 +8,14 @@ class AccountContainerWidget extends StatelessWidget {
   final String heading;
   final subHeading;
   final String buttonText;
-  
+
   final VoidCallback? onPressed;
   const AccountContainerWidget({
-    Key? key, required this.heading, this.subHeading, required this.buttonText, this.onPressed,
+    Key? key,
+    required this.heading,
+    this.subHeading,
+    required this.buttonText,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -28,12 +31,12 @@ class AccountContainerWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 Text(
-                 heading,
+                Text(
+                  heading,
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                 if(subHeading!=null)
+                if (subHeading != null)
                   Text(
                     subHeading,
                     style: const TextStyle(
@@ -43,9 +46,15 @@ class AccountContainerWidget extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: [GestureDetector(
-                onTap: onPressed,
-                child:  Text(buttonText,style: const TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),))],
+              children: [
+                GestureDetector(
+                    onTap: onPressed,
+                    child: Text(
+                      buttonText,
+                      style: const TextStyle(
+                          color: Colors.blue, fontWeight: FontWeight.bold),
+                    ))
+              ],
             )
           ],
         ),

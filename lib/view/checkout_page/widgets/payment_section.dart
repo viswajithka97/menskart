@@ -25,10 +25,10 @@ class PaymentSection extends StatelessWidget {
           buttonText: 'ONLINE',
           radioButtonText: 'RazorPay',
         ),
-        const RadioButtonWidget(
-          buttonText: 'PAYPAL',
-          radioButtonText: 'Pay Pal',
-        ),
+        // const RadioButtonWidget(
+        //   buttonText: 'PAYPAL',
+        //   radioButtonText: 'Pay Pal',
+        // ),
         kHeight20,
         Center(
           child: GetBuilder<PlaceOrderController>(
@@ -42,12 +42,7 @@ class PaymentSection extends StatelessWidget {
                     paymentController.openCheckout();
                   } else if (controller.select == "COD") {
                     controller.placeOrder();
-                  } else if (controller.select == "PAYPAL") {
-                    // paymentController.payPal();
                   }
-
-                  // }
-                  // controller.placeOrder();
                 },
                 textColor: kWhite,
               );

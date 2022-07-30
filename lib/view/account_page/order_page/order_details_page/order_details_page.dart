@@ -27,14 +27,14 @@ class OrderDetailsPage extends StatelessWidget {
           builder: (controller) {
             return ListView(
               children: [
-                HeadingText(headingText: 'View Order Details'),
-                OrderTrackingWidget(),
+                const HeadingText(headingText: 'View Order Details'),
+                const OrderTrackingWidget(),
                 OrderContainer(product: controller.products),
                 kHeight10,
                 OrderDetailsContainer(
                     order: orders, product: controller.products),
                 kHeight10,
-                HeadingText(headingText: 'Payment and Delivery Details'),
+                const HeadingText(headingText: 'Payment and Delivery Details'),
                 OrderPaymentDetails(order: orders),
                 kHeight5,
                 ConfirmYellowButton(
