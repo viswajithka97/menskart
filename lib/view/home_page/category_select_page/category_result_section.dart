@@ -47,7 +47,7 @@ class CategoryResultSection extends StatelessWidget {
                             crossAxisSpacing: 8,
                             childAspectRatio: 80 / 180,
                             crossAxisCount: 2),
-                    itemCount: 10,
+                    itemCount: controller.categoryProduct!.length,
                     itemBuilder: (context, index) {
                       final category = controller.categoryProduct![index];
                       return GestureDetector(
@@ -131,7 +131,8 @@ class CategoryResultSection extends StatelessWidget {
                                             borderRadius: kBRadius30),
                                         child: MaterialButton(
                                           onPressed: () {
-                                          cartController.addToCart(category.id);
+                                            cartController
+                                                .addToCart(category.id);
                                           },
                                           child: const Text(
                                             "Add to Cart",

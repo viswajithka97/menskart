@@ -4,7 +4,6 @@ import 'package:menskart/controller/cart_controller/cart_controller.dart';
 import 'package:menskart/controller/wishlist_controller/wishlist_controller.dart';
 import 'package:menskart/model/category_wise_product_model/category_wise_product_model.dart';
 import 'package:menskart/view/cart_page/cart_screen.dart';
-import 'package:menskart/view/checkout_page/checkout_address_page.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
@@ -24,18 +23,31 @@ class ProductDetailMiddleSection extends StatelessWidget {
           height: 30,
           child: GetBuilder<WishlistController>(
             init: WishlistController(),
+            // initState: (state) {
+            //   print("inistat called");
+            //   state.controller!.checkWishlist(category.id);
+            // },
             builder: (controller) {
+              controller.checkWishlist(category.id);
               return Align(
                   alignment: Alignment.centerRight,
                   child: IconButton(
                       onPressed: () {
                         controller.addToWishlist(category.id);
                       },
-                      icon: const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                        size: 30,
-                      )));
+                      icon: controller.isAdded == null
+                          ? const CircularProgressIndicator()
+                          : controller.isAdded == true
+                              ? const Icon(
+                                  Icons.favorite,
+                                  color: Colors.red,
+                                  size: 30,
+                                )
+                              : const Icon(
+                                  Icons.favorite_border,
+                                  color: Colors.red,
+                                  size: 30,
+                                )));
             },
           ),
         ),

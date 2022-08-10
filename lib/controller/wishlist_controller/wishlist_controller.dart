@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class WishlistController extends GetxController {
   List<WishilistItem>? wishlist;
   int? wishlistcount = 0;
-  var isAdded = false.obs;
+  bool? isAdded;
 
   deleteFromWishlist(String productId) async {
     try {
@@ -80,6 +80,21 @@ class WishlistController extends GetxController {
       }
     } catch (e) {
       log(e.toString());
+    }
+  }
+
+  checkWishlist(String id) async {
+    if (wishlist != null) {
+      for (var i = 0; i < wishlist!.length; i++) {
+        if (wishlist![i].product!.id == id) {
+          isAdded = true;
+          update();
+          break;
+        } else {
+          isAdded = false;
+          update();
+        }
+      }
     }
   }
 

@@ -18,16 +18,16 @@ class WishlistServices {
     return null;
   }
 
- Future<Response<dynamic>?> getWishlist(id) async {
-try {
+  Future<Response<dynamic>?> getWishlist(id) async {
+    try {
       final response = await dio.get(
-      'wishilist-view/$id',
-    );
-    
-    return response;
-} catch (e) {
-  DioError;
-}
-return null;
+        'wishilist-view/$id',
+      );
+
+      return response;
+    } catch (e) {
+      DioError;
+    }
+    return null;
   }
 }

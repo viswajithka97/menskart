@@ -36,11 +36,11 @@ class UserDetailsContainer extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
+                  children: const[
                     SizedBox(
                       height: 20,
-                      child: IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.edit)),
+                      // child: IconButton(
+                      //     onPressed: () {}, icon: const Icon(Icons.edit)),
                     ),
                   ],
                 ),

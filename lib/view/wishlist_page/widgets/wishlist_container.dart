@@ -61,7 +61,7 @@ class WishlistContainer extends StatelessWidget {
                                   borderRadius: kBRadius10,
                                   image: DecorationImage(
                                       image: NetworkImage(
-                                          '$kProductUrl${item.product.id}.jpg'),
+                                          '$kProductUrl${item.product!.id}.jpg'),
                                       fit: BoxFit.cover)),
                             ),
                           ),
@@ -75,18 +75,25 @@ class WishlistContainer extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    item.product.description,
+                                    item.product!.description!,
                                     style: const TextStyle(
                                       fontSize: 15,
                                     ),
                                   ),
                                   kHeight5,
-                                  Text(
-                                    '₹ ${item.product.offerPrice}',
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20),
-                                  ),
+                                  item.product!.offerPrice == null
+                                      ? Text(
+                                          '₹ ${item.product!.orginalPrice}',
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20),
+                                        )
+                                      : Text(
+                                          '₹ ${item.product!.offerPrice}',
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20),
+                                        ),
                                   kHeight5,
                                   const Text(
                                     'In Stock',
@@ -127,8 +134,8 @@ class WishlistContainer extends StatelessWidget {
                                                       onPressed: () {
                                                         controller
                                                             .deleteFromWishlist(
-                                                                item.product
-                                                                    .id);
+                                                                item.product!
+                                                                    .id!);
                                                         controller.update();
                                                         controller
                                                             .getWishlist();

@@ -43,9 +43,9 @@ class WishilistItem {
         required this.product,
     });
 
-    String id;
-    String item;
-    Product product;
+    String? id;
+    String? item;
+    Product? product;
 
     factory WishilistItem.fromJson(Map<String, dynamic> json) => WishilistItem(
         id: json["_id"],
@@ -56,7 +56,7 @@ class WishilistItem {
     Map<String, dynamic> toJson() => {
         "_id": id,
         "item": item,
-        "product": product.toJson(),
+        "product": product!.toJson(),
     };
 }
 
@@ -71,13 +71,13 @@ class Product {
         required this.offerPrice,
     });
 
-    String id;
-    String category;
-    String brand;
-    String description;
-    String orginalPrice;
-    String offerpercentage;
-    int offerPrice;
+    String? id;
+    String? category;
+    String? brand;
+    String? description;
+    String? orginalPrice;
+    String? offerpercentage;
+    int? offerPrice;
 
     factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["_id"],

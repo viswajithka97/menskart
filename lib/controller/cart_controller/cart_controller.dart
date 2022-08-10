@@ -171,7 +171,7 @@ class CartController extends GetxController {
         final data = changeQuantityModelFromJson(response.data);
         if (data.response.status) {
           getCartItems();
-          update();
+          // update();
         }
       }
     } catch (e) {

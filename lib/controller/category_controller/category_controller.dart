@@ -16,9 +16,9 @@ class CategoryController extends GetxController {
         log(response.data);
         final recieved = categoryWiseProductModelFromJson(response.data);
         categoryProduct = recieved.products.obs;
-
-        Get.to(() => const CategorySelect());
-
+        if (categoryProduct != null) {
+          Get.to(() => const CategorySelect());
+        }
         update();
       } else {
         log('data vannatila');

@@ -22,15 +22,12 @@ class OrderController extends GetxController {
       log(response!.data);
       if (response.statusCode == 200) {
         final data = getAllOrdersModelFromJsonFromJson(response.data);
-        if (data.orders != null) {
-          checkResponse = data;
-          orders = data.orders.orders;
-          orderlength = data.orders.orderLength;
 
-          print("store aayi");
-          log(data.toString());
-          update();
-        }
+        checkResponse = data;
+        orders = data.orders.orders;
+        orderlength = data.orders.orderLength;
+        log(data.toString());
+        update();
       }
     } catch (e) {
       log(" catch =-================$e");

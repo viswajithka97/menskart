@@ -55,7 +55,8 @@ class CouponSection extends StatelessWidget {
                                     controller.coupons![index].coupon,
                                     style: const TextStyle(fontSize: 15),
                                   ),
-                                  trailing: Text("${controller.coupons![index].discount} % off"),
+                                  trailing: Text(
+                                      "${controller.coupons![index].discount} % off"),
                                 );
                               }),
                         );

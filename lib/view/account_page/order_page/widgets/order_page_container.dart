@@ -60,7 +60,7 @@ class OrderPageContainer extends StatelessWidget {
                               ),
                               // kHeight10,
                               Text(
-                                orders.status,
+                                orders.status!,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,

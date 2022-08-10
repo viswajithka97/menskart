@@ -141,12 +141,27 @@ class LatestProductsSection extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    Text(
-                                      '₹ ${controller.trendingProducts![index].offerPrice}',
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                    ),
+                                    controller.trendingProducts![index]
+                                                .offerPrice ==
+                                            null
+                                        ? Text(
+                                            '₹ ${controller.trendingProducts![index].orginalPrice}',
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20),
+                                          )
+                                        : Text(
+                                            '₹ ${controller.trendingProducts![index].offerpercentage}',
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20),
+                                          ),
+                                    // Text(
+                                    //   '₹ ${controller.trendingProducts![index].offerPrice}',
+                                    //   style: const TextStyle(
+                                    //       fontWeight: FontWeight.bold,
+                                    //       fontSize: 20),
+                                    // ),
                                     Text(
                                         '₹${controller.trendingProducts![index].orginalPrice}',
                                         style: const TextStyle(

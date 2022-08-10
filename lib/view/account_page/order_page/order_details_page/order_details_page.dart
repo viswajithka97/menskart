@@ -25,6 +25,9 @@ class OrderDetailsPage extends StatelessWidget {
         child: GetBuilder<OrderController>(
           init: OrderController(),
           builder: (controller) {
+            if (controller.products == null) {
+              return const Center(child: CircularProgressIndicator());
+            }
             return ListView(
               children: [
                 const HeadingText(headingText: 'View Order Details'),
@@ -37,12 +40,14 @@ class OrderDetailsPage extends StatelessWidget {
                 const HeadingText(headingText: 'Payment and Delivery Details'),
                 OrderPaymentDetails(order: orders),
                 kHeight5,
-                ConfirmYellowButton(
-                    buttonText: "Cancel Order",
-                    buttonColor: kLoginBlue,
-                    onPressed: () {
-                      controller.cancelOrder(orders!.id);
-                    })
+                orders!.status == "cancelled"
+                    ? kHeight20
+                    : ConfirmYellowButton(
+                        buttonText: "Cancel Order",
+                        buttonColor: kLoginBlue,
+                        onPressed: () {
+                          controller.cancelOrder(orders!.id);
+                        })
               ],
             );
           },

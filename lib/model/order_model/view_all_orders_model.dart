@@ -30,7 +30,7 @@ class Orders {
   });
 
   List<Order>? orders;
-  int orderLength;
+  int? orderLength;
 
   factory Orders.fromJson(Map<String, dynamic> json) => Orders(
         orders: List<Order>.from(json["orders"].map((x) => Order.fromJson(x))),
@@ -59,13 +59,13 @@ class Order {
   });
 
   String id;
-  DeliveryDetails deliveryDetails;
+  DeliveryDetails? deliveryDetails;
   String userId;
   String user;
   String paymentMethode;
   List<Product> products;
   int totalAmount;
-  String status;
+  String? status;
   String payment;
   DateTime date;
   String orderDate;
@@ -87,7 +87,7 @@ class Order {
 
   Map<String, dynamic> toJson() => {
         "_id": id,
-        "deliveryDetails": deliveryDetails.toJson(),
+        "deliveryDetails": deliveryDetails!.toJson(),
         "userId": userId,
         "user": user,
         "paymentMethode": paymentMethode,
@@ -110,12 +110,12 @@ class DeliveryDetails {
     required this.houseNo,
   });
 
-  String mobile;
-  String address;
-  String pincode;
-  String state;
-  String city;
-  int houseNo;
+  String? mobile;
+  String? address;
+  String? pincode;
+  String? state;
+  String? city;
+  int? houseNo;
 
   factory DeliveryDetails.fromJson(Map<String, dynamic> json) =>
       DeliveryDetails(
@@ -143,8 +143,8 @@ class Product {
     required this.quantity,
   });
 
-  String item;
-  int quantity;
+  String? item;
+  int? quantity;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         item: json["item"],

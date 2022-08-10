@@ -43,7 +43,7 @@ class OrderPaymentDetails extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 10.0),
             child: Text(
-              '${order!.user}\nHouse No: ${address.houseNo}\n${address.address} \n${address.city}\n${address.state} - ${address.pincode}\nPhone: +91 ${address.mobile}',
+              '${order!.user}\nHouse No: ${address!.houseNo}\n${address.address} \n${address.city}\n${address.state} - ${address.pincode}\nPhone: +91 ${address.mobile}',
               style: TextStyle(
                 fontSize: 18,
               ),

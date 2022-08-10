@@ -40,7 +40,9 @@ class HomePageController extends GetxController {
       log(response!.data.toString());
       if (response.statusCode == 200) {
         final data = allCouponModleFromJson(response.data);
+
         coupons = data.coupon.obs;
+        update();
       }
     } catch (e) {
       log(e.toString());
