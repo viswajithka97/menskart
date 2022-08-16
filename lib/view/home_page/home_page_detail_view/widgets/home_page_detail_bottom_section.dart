@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:menskart/controller/cart_controller/cart_controller.dart';
 import 'package:menskart/controller/wishlist_controller/wishlist_controller.dart';
 import 'package:menskart/model/home_page/home_page_model.dart';
+import 'package:menskart/view/cart_page/cart_screen.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
@@ -10,8 +11,7 @@ import 'package:menskart/view/widgets/container_button.dart';
 
 class HomePageBottomSection extends StatelessWidget {
   final Product category;
-  HomePageBottomSection({Key? key, required this.category})
-      : super(key: key);
+  HomePageBottomSection({Key? key, required this.category}) : super(key: key);
   final controller = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
@@ -129,7 +129,9 @@ class HomePageBottomSection extends StatelessWidget {
               containerIcon: Icons.shopping_cart_outlined,
               radius: kBRadius10,
               buttonColor: kGreen,
-              onPressed: () {},
+              onPressed: () {
+                controller.addToCart(category.id);
+              },
             ),
           ],
         )

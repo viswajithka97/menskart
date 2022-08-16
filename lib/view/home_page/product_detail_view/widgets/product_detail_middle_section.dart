@@ -23,10 +23,6 @@ class ProductDetailMiddleSection extends StatelessWidget {
           height: 30,
           child: GetBuilder<WishlistController>(
             init: WishlistController(),
-            // initState: (state) {
-            //   print("inistat called");
-            //   state.controller!.checkWishlist(category.id);
-            // },
             builder: (controller) {
               controller.checkWishlist(category.id);
               return Align(

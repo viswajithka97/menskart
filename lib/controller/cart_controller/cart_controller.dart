@@ -14,6 +14,13 @@ class CartController extends GetxController {
   Rx<int>? cartCount;
   Rx<int>? totalValue;
 
+  @override
+  void onInit() {
+    log("villichu");
+    getCartItems();
+    super.onInit();
+  }
+
   getCartItems() async {
     try {
       final sharedPrefs = await SharedPreferences.getInstance();
@@ -47,6 +54,8 @@ class CartController extends GetxController {
       if (response.statusCode == 200) {
         final data = addToCartModelFromJson(response.data);
         if (data.status) {
+          getCartItems();
+          update();
           Get.snackbar(
             'Success',
             'Product added to cart',
@@ -108,6 +117,7 @@ class CartController extends GetxController {
       if (response.statusCode == 200) {
         final data = removeProductCartModelFromJson(response.data);
         if (data.response.acknowledged) {
+          getCartItems();
           update();
           Get.snackbar(
             'Success',
@@ -177,11 +187,5 @@ class CartController extends GetxController {
     } catch (e) {
       log('catch =============$e');
     }
-  }
-
-  @override
-  void onInit() {
-    getCartItems();
-    super.onInit();
   }
 }
