@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/address_controller/address_controller.dart';
 import 'package:menskart/controller/location_controller/location_controller.dart';

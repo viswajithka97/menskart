@@ -1,8 +1,9 @@
+// ignore_for_file: prefer_if_null_operators
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/cart_controller/cart_controller.dart';
 import 'package:menskart/controller/place_order_controller/place_order_controller.dart';
-import 'package:menskart/model/category_wise_product_model/category_wise_product_model.dart';
 import 'package:menskart/view/checkout_page/widgets/price_details_text_widget.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';

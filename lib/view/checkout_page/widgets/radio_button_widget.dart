@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/place_order_controller/place_order_controller.dart';
-import 'package:menskart/view/core/color_constants.dart';
 
 class RadioButtonWidget extends StatelessWidget {
   final String radioButtonText;
@@ -24,7 +23,7 @@ class RadioButtonWidget extends StatelessWidget {
               onChanged: (value) {
                 controller.radiobuttonSelected(value.toString());
                 controller.update();
-                print(value);
+           
               },
               title: Text(radioButtonText),
             );

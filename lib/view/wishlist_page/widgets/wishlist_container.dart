@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:menskart/controller/cart_controller/cart_controller.dart';
 import 'package:menskart/controller/wishlist_controller/wishlist_controller.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
 import 'package:menskart/view/core/url_constants.dart';
+import 'package:menskart/view/home_page/widgets/shimmer_widget.dart';
 import 'package:menskart/view/widgets/container_button.dart';
 
 class WishlistContainer extends StatelessWidget {
-  const WishlistContainer({
+  WishlistContainer({
     Key? key,
   }) : super(key: key);
-  // final cont = Get.put(WishlistController());
+  final cont = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder<WishlistController>(
       init: WishlistController(),
       builder: (controller) {
         if (controller.wishlist == null) {
-          return const Center(
-              child: Center(child: CircularProgressIndicator()));
+          return const ShimmerWidget();
         } else if (controller.wishlistcount == 0) {
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.5,
@@ -38,6 +40,7 @@ class WishlistContainer extends StatelessWidget {
             itemCount: controller.wishlist!.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
+              //  print(size!.width * 0.535);
               final item = controller.wishlist![index];
 
               return Padding(
@@ -46,7 +49,7 @@ class WishlistContainer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      height: 150,
+                      height: size!.height * 0.1763,
                       width: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: kBRadius15, color: kConBagColor),
@@ -55,8 +58,8 @@ class WishlistContainer extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Container(
-                              height: 140,
-                              width: 140,
+                              height: size!.height * 0.1646,
+                              width: size!.width * 0.357,
                               decoration: BoxDecoration(
                                   borderRadius: kBRadius10,
                                   image: DecorationImage(
@@ -68,8 +71,8 @@ class WishlistContainer extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 10.0),
                             child: SizedBox(
-                              height: 150,
-                              width: 210,
+                              height: size!.height * 1763,
+                              width: size!.width * 0.535,
                               // color: kBlack,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,12 +109,14 @@ class WishlistContainer extends StatelessWidget {
                                   Row(
                                     children: [
                                       ContainerButton(
-                                          height: 38,
-                                          width: 100,
+                                          height: size!.height * 0.045,
+                                          width: size!.width * 0.255,
                                           containerIcon:
                                               Icons.fast_forward_rounded,
                                           radius: kBRadius30,
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            cont.addToCart(item.product!.id!);
+                                          },
                                           buttonText: 'But Now'),
                                       const Spacer(),
                                       IconButton(

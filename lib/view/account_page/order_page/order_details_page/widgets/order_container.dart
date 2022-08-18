@@ -29,7 +29,7 @@ class OrderContainer extends StatelessWidget {
                 borderRadius: kBRadius10,
                 image: DecorationImage(
                     image: NetworkImage(
-                        'http://menscart.shop/product-images/${products.id}.jpg'),
+                        'http://menscart.shop/product-images/${products!.id}.jpg'),
                     fit: BoxFit.cover),
               ),
             ),
@@ -44,8 +44,8 @@ class OrderContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    products.description,
-                    style: TextStyle(
+                    products.description!,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
                     ),
@@ -53,7 +53,7 @@ class OrderContainer extends StatelessWidget {
                   kHeight10,
                   Text(
                     'Qty : ${product![0].quantity}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),

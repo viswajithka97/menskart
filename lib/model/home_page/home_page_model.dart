@@ -2,6 +2,8 @@
 //
 //     final homePageModel = homePageModelFromJson(jsonString);
 
+// ignore_for_file: prefer_if_null_operators
+
 import 'dart:convert';
 
 HomePageModel homePageModelFromJson(String str) =>

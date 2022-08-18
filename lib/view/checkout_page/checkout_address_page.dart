@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:menskart/model/category_wise_product_model/category_wise_product_model.dart';
 import 'package:menskart/view/checkout_page/widgets/checkout_address_container.dart';
 import 'package:menskart/view/checkout_page/widgets/checkout_top_section.dart';
 import 'package:menskart/view/checkout_page/widgets/payment_section.dart';

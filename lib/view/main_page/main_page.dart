@@ -12,7 +12,7 @@ class MainPage extends StatelessWidget {
     const HomeScreen(),
     const WishListScreen(),
     const CartScreen(),
-    AccountScreen(),
+    const AccountScreen(),
   ];
   @override
   Widget build(BuildContext context) {

@@ -36,10 +36,10 @@ class ProductElement {
     required this.product,
   });
 
-  String id;
-  String item;
-  int quantity;
-  ProductProduct product;
+  String? id;
+  String? item;
+  int? quantity;
+  ProductProduct? product;
 
   factory ProductElement.fromJson(Map<String, dynamic> json) => ProductElement(
         id: json["_id"],
@@ -52,7 +52,7 @@ class ProductElement {
         "_id": id,
         "item": item,
         "quantity": quantity,
-        "product": product.toJson(),
+        "product": product!.toJson(),
       };
 }
 
@@ -67,13 +67,13 @@ class ProductProduct {
     required this.offerPrice,
   });
 
-  String id;
-  String category;
-  String brand;
-  String description;
-  String orginalPrice;
-  String offerpercentage;
-  int offerPrice;
+  String? id;
+  String? category;
+  String? brand;
+  String? description;
+  String? orginalPrice;
+  String? offerpercentage;
+  int? offerPrice;
 
   factory ProductProduct.fromJson(Map<String, dynamic> json) => ProductProduct(
         id: json["_id"],

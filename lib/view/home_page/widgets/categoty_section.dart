@@ -44,7 +44,6 @@ class CategorySection extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          // SizedBox(width: 10,),
                           CircleAvatar(
                             radius: 80,
                             backgroundImage: NetworkImage(
@@ -58,9 +57,7 @@ class CategorySection extends StatelessWidget {
                       ),
                     );
                   },
-                  separatorBuilder: (context, index) => const SizedBox(
-                        width: 20,
-                      ),
+                  separatorBuilder: (context, index) => kWidth20,
                   itemCount: controller.category!.length),
             );
           },

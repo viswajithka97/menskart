@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/cart_controller/cart_controller.dart';
 import 'package:menskart/controller/place_order_controller/place_order_controller.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/view/cart_page/widgets/confirm_yellow_button.dart';
 import 'package:menskart/view/checkout_page/checkout_address_page.dart';
 import 'package:menskart/view/core/color_constants.dart';
@@ -51,7 +52,7 @@ class CartBottomSection extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,
-                    height: 40,
+                    height: size!.height * 0.048,
                     child: TextFormField(
                       controller: couponController,
                       decoration: InputDecoration(
@@ -70,7 +71,7 @@ class CartBottomSection extends StatelessWidget {
                   const Spacer(),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.3,
-                    height: 40,
+                    height: size!.height * 0.048,
                     child: ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:

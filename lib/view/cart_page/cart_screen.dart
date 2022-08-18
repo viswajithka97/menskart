@@ -13,17 +13,17 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
       child: ListView(
-        children: const [
-          HeadingText(
+        children:  [
+          const HeadingText(
             headingText: 'Your Cart',
           ),
-          OrdersContainer(),
+          const OrdersContainer(),
           kHeight10,
-          Divider(
+          const Divider(
             thickness: 2,
             color: kBlack,
           ),
-          CartBottomSection()
+          const CartBottomSection()
         ],
       ),
     ));

@@ -1,13 +1,5 @@
-// ignore_for_file: avoid_types_as_parameter_names, non_constant_identifier_names
-
 import 'dart:async';
-import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:menskart/controller/location_controller/location_controller.dart';
@@ -85,8 +77,8 @@ class LocationFetch extends StatelessWidget {
               mapType: MapType.normal,
               mapToolbarEnabled: true,
               markers: markers,
-              onTap: (LatLng) {
-                controller.onTapMarker(LatLng);
+              onTap: (latLng) {
+                controller.onTapMarker(latLng);
                 controller.update();
               },
               onMapCreated: (GoogleMapController controller) {

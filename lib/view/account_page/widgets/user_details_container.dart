@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:menskart/controller/user_controller/user_controller.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/view/core/color_constants.dart';
+import 'package:menskart/view/core/space_constants.dart';
 
 class UserDetailsContainer extends StatelessWidget {
   const UserDetailsContainer({
@@ -16,32 +18,28 @@ class UserDetailsContainer extends StatelessWidget {
         builder: (controller) {
           if (controller.address == null) {
             return SizedBox(
-              height: 400,
+              height: size!.height * 0.471,
               width: double.infinity,
               child: Lottie.asset("assets/lottie/loading.json"),
             );
           } else if (controller.address!.isEmpty) {
-            return const SizedBox(
-              height: 225,
+            return SizedBox(
+              height: size!.height * 0.265,
               width: double.infinity,
-              child: Center(child: Text("No User Data Found")),
+              child: const Center(child: Text("No User Data Found")),
             );
           }
           final address = controller.address![0];
           return Container(
-            height: 225,
+            height: size!.height * 0.265,
             width: double.infinity,
             color: kBackgroundGrey,
             child: Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const[
-                    SizedBox(
-                      height: 20,
-                      // child: IconButton(
-                      //     onPressed: () {}, icon: const Icon(Icons.edit)),
-                    ),
+                  children: [
+                    kHeight20,
                   ],
                 ),
                 const CircleAvatar(

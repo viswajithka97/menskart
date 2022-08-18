@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/cart_controller/cart_services/cart_services.dart';
 import 'package:menskart/main.dart';
-import 'package:menskart/model/cart_model/add_to_cart_,model.dart';
+import 'package:menskart/model/cart_model/add_to_cart_model.dart';
 import 'package:menskart/model/cart_model/change_quantity_model.dart';
 import 'package:menskart/model/cart_model/remove_product_model.dart';
 import 'package:menskart/model/cart_model/view_cart_model.dart';
@@ -112,9 +112,9 @@ class CartController extends GetxController {
     Map<String, dynamic> id = {"product": productId, "cart": cartId};
     try {
       final response = await CartServices().removeProduct(id);
-      print(response!.data);
+     
 
-      if (response.statusCode == 200) {
+      if (response!.statusCode == 200) {
         final data = removeProductCartModelFromJson(response.data);
         if (data.response.acknowledged) {
           getCartItems();
@@ -175,9 +175,9 @@ class CartController extends GetxController {
     try {
       final response = await CartServices().updateProductQuantity(id);
 
-      print(response!.data);
 
-      if (response.statusCode == 200) {
+
+      if (response!.statusCode == 200) {
         final data = changeQuantityModelFromJson(response.data);
         if (data.response.status) {
           getCartItems();

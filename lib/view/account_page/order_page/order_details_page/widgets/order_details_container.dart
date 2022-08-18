@@ -26,7 +26,7 @@ class OrderDetailsContainer extends StatelessWidget {
           ),
           OrderDetailsTextWidget(
             firstText: 'Order Id ',
-            secondText: product![0].id,
+            secondText: product![0].id!,
           ),
           OrderDetailsTextWidget(
             firstText: 'Order Total',

@@ -19,11 +19,10 @@ class OrderPageContainer extends StatelessWidget {
         if (controller.checkResponse == null) {
           return const Center(child: CircularProgressIndicator());
         } else if (controller.orderlength == 0) {
-          print('order length is zero');
-           print(controller.checkResponse);
+         
           return const Center(child: Text('No Orders Yet'));
         } else {
-          print("data undu");
+       
           return ListView.builder(
               shrinkWrap: true,
               itemCount: controller.orders!.length,
@@ -61,7 +60,7 @@ class OrderPageContainer extends StatelessWidget {
                               // kHeight10,
                               Text(
                                 orders.status!,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,
                                     color: Colors.green),

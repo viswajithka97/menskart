@@ -5,8 +5,8 @@ import 'package:menskart/main.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
 import 'package:menskart/view/home_page/home_page_detail_view/home_page_view.dart';
+import 'package:menskart/view/home_page/widgets/shimmer_widget.dart';
 import 'package:menskart/view/widgets/rating_star_widget.dart';
-import 'package:shimmer/shimmer.dart';
 
 class DealOfTheDaySection extends StatelessWidget {
   const DealOfTheDaySection({Key? key}) : super(key: key);
@@ -25,62 +25,7 @@ class DealOfTheDaySection extends StatelessWidget {
           init: HomePageController(),
           builder: (controller) {
             if (controller.products == null) {
-              return SizedBox(
-                  width: double.infinity,
-                  height: size!.height * 0.33,
-                  child: Column(mainAxisSize: MainAxisSize.max, children: [
-                    Expanded(
-                      child: Shimmer.fromColors(
-                        baseColor: const Color.fromARGB(255, 216, 226, 228),
-                        highlightColor: Colors.white,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: size!.width * 0.382,
-                              height: size!.height * 0.33,
-                              color: Colors.white,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8.0),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Container(
-                                    width: double.infinity,
-                                    height: 8.0,
-                                    color: Colors.white,
-                                  ),
-                                  const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(vertical: 2.0),
-                                  ),
-                                  Container(
-                                    width: double.infinity,
-                                    height: 8.0,
-                                    color: Colors.white,
-                                  ),
-                                  const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(vertical: 2.0),
-                                  ),
-                                  Container(
-                                    width: 40.0,
-                                    height: 8.0,
-                                    color: Colors.white,
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ]));
+              return const ShimmerWidget();
             }
             return Container(
               height: size!.height * 0.33,
@@ -110,20 +55,30 @@ class DealOfTheDaySection extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10.0),
-                                  child: Container(
-                                    height: size!.width * 0.382,
-                                    width: size!.height * 0.1763,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                            'http://menscart.shop/product-images/${controller.products![index].id}.jpg'),
-                                        fit: BoxFit.cover,
-                                      ),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10.0),
+                                    child: FadeInImage.assetNetwork(
+                                        fit: BoxFit.fill,
+                                        height: size!.width * 0.382,
+                                        width: size!.height * 0.1763,
+                                        placeholderFit: BoxFit.scaleDown,
+                                        placeholderCacheHeight: 50,
+                                        placeholder:
+                                            'assets/images/loading.png',
+                                        image:
+                                            'http://menscart.shop/product-images/${controller.products![index].id}.jpg')
+
+                                    //  Container(
+
+                                    //   decoration: BoxDecoration(
+                                    //     image: DecorationImage(
+                                    //       image: NetworkImage(
+                                    //          ),
+                                    //       fit: BoxFit.cover,
+                                    //     ),
+                                    //   ),
+                                    // ),
                                     ),
-                                  ),
-                                ),
                                 SizedBox(
                                   height: size!.height * 0.045,
                                   child: Text(

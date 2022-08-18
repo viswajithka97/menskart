@@ -1,8 +1,4 @@
-// To parse this JSON data, do
-//
-//     final addAddressModel = addAddressModelFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 AddAddressModel addAddressModelFromJson(String str) => AddAddressModel.fromJson(json.decode(str));

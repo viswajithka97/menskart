@@ -17,13 +17,10 @@ class OrdersContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(size!.height * .039);
+   
     return GetBuilder<CartController>(
       init: CartController(),
-      
       builder: (controller) {
-        // controller.getCartItems();
-        print("villlichu");
         if (controller.products == null) {
           return SizedBox(
             height: size!.height * .236,

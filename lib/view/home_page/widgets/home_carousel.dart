@@ -42,17 +42,32 @@ class TopSectionCarousel extends StatelessWidget {
                   itemCount: controller.banner!.length,
                   itemBuilder: (context, itemindex, pageViewIndex) {
                     return Container(
-                      width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: kBRadius10,
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                'http://menscart.shop/banner-images/${controller.banner![itemindex].id}.jpg'),
-                            filterQuality: FilterQuality.high,
-                            fit: BoxFit.fill,
-                            alignment: Alignment.center),
                       ),
+                      child: FadeInImage.assetNetwork(
+                          fit: BoxFit.cover,
+                          // placeholderScale: 0.5,
+                          // placeholderFit: BoxFit.scaleDown,
+                          // placeholderCacheHeight: 20,
+                          // imageCacheWidth: size!.width * .5 as int ,
+                          // height: size!.width * .5,
+                          placeholder: 'assets/images/loading.png',
+                          image:
+                              'http://menscart.shop/banner-images/${controller.banner![itemindex].id}.jpg'),
                     );
+                    // Container(
+                    //   width: double.infinity,
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: kBRadius10,
+                    //     image: DecorationImage(
+                    //         image: NetworkImage(
+                    //             'http://menscart.shop/banner-images/${controller.banner![itemindex].id}.jpg'),
+                    //         filterQuality: FilterQuality.high,
+                    //         fit: BoxFit.fill,
+                    //         alignment: Alignment.center),
+                    //   ),
+                    // );
                   }),
             );
           },

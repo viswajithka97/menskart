@@ -48,18 +48,18 @@ class LoginSection extends StatelessWidget {
                 onPressed: () {}),
             kHeight10,
             Row(
-              children: const [
-                Expanded(
+              children: [
+                const Expanded(
                     child: Divider(
                   thickness: 2,
                 )),
                 kWidth10,
-                Text(
+                const Text(
                   'or Sign in with Email',
                   style: TextStyle(fontSize: 17),
                 ),
                 kWidth10,
-                Expanded(
+                const Expanded(
                     child: Divider(
                   thickness: 2,
                 ))
@@ -193,14 +193,5 @@ class LoginSection extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void validateAndSave() {
-    final FormState? form = _formKey.currentState;
-    if (form!.validate()) {
-      print('Form is valid');
-    } else {
-      print('Form is invalid');
-    }
   }
 }

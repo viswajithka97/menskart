@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/cart_controller/cart_controller.dart';
 import 'package:menskart/controller/wishlist_controller/wishlist_controller.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/model/home_page/home_page_model.dart';
-import 'package:menskart/view/cart_page/cart_screen.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
@@ -19,7 +19,7 @@ class HomePageBottomSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: 30,
+          height: size!.height * 0.036,
           child: GetBuilder<WishlistController>(
             init: WishlistController(),
             builder: (controller) {
@@ -76,7 +76,7 @@ class HomePageBottomSection extends StatelessWidget {
         ),
         kHeight10,
         Container(
-          height: 55,
+          height: size!.height * 0.065,
           width: double.infinity,
           decoration:
               BoxDecoration(color: kBackgroundGrey, borderRadius: kBRadius10),
@@ -112,19 +112,18 @@ class HomePageBottomSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ContainerButton(
-              height: 50,
-              width: 150,
+              height: size!.height * 0.059,
+              width: size!.width * 0.382,
               buttonText: 'Add to Cart',
               containerIcon: Icons.shopping_cart_outlined,
               radius: kBRadius10,
               onPressed: () {
-                print('button called');
                 controller.addToCart(category.id);
               },
             ),
             ContainerButton(
-              height: 50,
-              width: 150,
+              height: size!.height * 0.059,
+              width: size!.width * 0.382,
               buttonText: 'Buy Now',
               containerIcon: Icons.shopping_cart_outlined,
               radius: kBRadius10,

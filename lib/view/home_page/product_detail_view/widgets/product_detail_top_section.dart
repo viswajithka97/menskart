@@ -34,10 +34,10 @@ class ProductDetailTopSection extends StatelessWidget {
         ),
         kHeight10,
         Row(
-          children: const [
-            RatingStarWidget(),
+          children:  [
+            const RatingStarWidget(),
             kWidth10,
-            Text('35 Ratings & 45 Reviews')
+            const Text('35 Ratings & 45 Reviews')
           ],
         ),
       ],

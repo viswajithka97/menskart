@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:menskart/controller/address_controller/address_controller.dart';
 import 'package:menskart/controller/place_order_controller/place_order_controller.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/view/address_page/edit_address/edit_address_page.dart';
 import 'package:menskart/view/cart_page/widgets/confirm_yellow_button.dart';
 import 'package:menskart/view/core/color_constants.dart';
@@ -22,7 +23,7 @@ class CheckoutAddressSelect extends StatelessWidget {
         if (controller.address == null) {
           return Center(
             child: SizedBox(
-              height: 400,
+              height: size!.height * 0.048,
               width: double.infinity,
               child: Lottie.asset("assets/lottie/loading.json"),
             ),
@@ -107,8 +108,8 @@ class CheckoutAddressSelect extends StatelessWidget {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 40,
-                                      width: 80,
+                                      height: size!.height * 0.048,
+                                      width: size!.width * 0.204,
                                       child: ConfirmYellowButton(
                                           buttonText: 'Edit',
                                           buttonColor: kConButonColor,

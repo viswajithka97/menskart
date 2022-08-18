@@ -1,8 +1,4 @@
-// To parse this JSON data, do
-//
-//     final applyCouponModel = applyCouponModelFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 ApplyCouponModel applyCouponModelFromJson(String str) =>

@@ -22,7 +22,6 @@ class CartServices {
   }
 
   Future<Response<dynamic>?> getCart(String id) async {
-    print('${kBaseUrl}cart/$id');
     try {
       log(id.toString());
       final response = await dio.get('cart/$id');
@@ -35,7 +34,6 @@ class CartServices {
 
   Future<Response<dynamic>?> removeProduct(Map<String, dynamic> id) async {
     try {
-      print(id);
       final response = await dio.post('remove-product-cart', data: id);
       return response;
     } catch (e) {
@@ -47,7 +45,6 @@ class CartServices {
   Future<Response<dynamic>?> updateProductQuantity(
       Map<String, dynamic> id) async {
     try {
-      print(id);
       final response = await dio.post('change-product-quantity', data: id);
       return response;
     } catch (e) {

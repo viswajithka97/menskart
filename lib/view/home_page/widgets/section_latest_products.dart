@@ -4,7 +4,6 @@ import 'package:menskart/controller/home_page_controller/home_page_controller.da
 import 'package:menskart/main.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
-import 'package:menskart/view/home_page/home_page_detail_view/home_page_view.dart';
 import 'package:menskart/view/widgets/rating_star_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -110,20 +109,16 @@ class LatestProductsSection extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10.0),
-                                  child: Container(
-                                    height: size!.height * 0.1763,
-                                    width: size!.width * 0.382,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                            'http://menscart.shop/product-images/${controller.trendingProducts![index].id}.jpg'),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10.0),
+                                    child: FadeInImage.assetNetwork(
+                                        fit: BoxFit.fill,
+                                        height: size!.width * 0.382,
+                                        width: size!.height * 0.1763,
+                                        placeholder:
+                                            'assets/images/loading.png',
+                                        image:
+                                            'http://menscart.shop/product-images/${controller.products![index].id}.jpg')),
                                 SizedBox(
                                   height: size!.height * 0.045,
                                   child: Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/model/home_page/home_page_model.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/space_constants.dart';
@@ -22,7 +23,7 @@ class HomePageTopSection extends StatelessWidget {
         ),
         kHeight10,
         Container(
-          height: 400,
+          height: size!.height * 0.471,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: kBRadius10,
@@ -34,10 +35,10 @@ class HomePageTopSection extends StatelessWidget {
         ),
         kHeight10,
         Row(
-          children: const [
-            RatingStarWidget(),
+          children:  [
+            const RatingStarWidget(),
             kWidth10,
-            Text('35 Ratings & 45 Reviews')
+            const Text('35 Ratings & 45 Reviews')
           ],
         ),
       ],

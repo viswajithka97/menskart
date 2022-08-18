@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menskart/controller/cart_controller/cart_controller.dart';
 import 'package:menskart/controller/category_controller/category_controller.dart';
+import 'package:menskart/main.dart';
 import 'package:menskart/view/core/border_radius.dart';
 import 'package:menskart/view/core/color_constants.dart';
 import 'package:menskart/view/core/space_constants.dart';
 import 'package:menskart/view/core/url_constants.dart';
 import 'package:menskart/view/home_page/product_detail_view/product_detail_view_page.dart';
+import 'package:menskart/view/home_page/widgets/shimmer_widget.dart';
 import 'package:menskart/view/widgets/rating_star_widget.dart';
 
 class CategoryResultSection extends StatelessWidget {
@@ -30,13 +32,7 @@ class CategoryResultSection extends StatelessWidget {
             init: CategoryController(),
             builder: (controller) {
               if (controller.categoryProduct == null) {
-                return const SizedBox(
-                  height: 200,
-                  width: double.infinity,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
+                return const ShimmerWidget();
               }
               return Expanded(
                 child: GridView.builder(
@@ -66,7 +62,7 @@ class CategoryResultSection extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  height: 230,
+                                  height: size!.height * 0.271,
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
@@ -78,7 +74,7 @@ class CategoryResultSection extends StatelessWidget {
                                 ),
                                 kHeight10,
                                 SizedBox(
-                                  height: 60,
+                                  height: size!.height * 0.071,
                                   child: Text(
                                     category.description,
                                     style: const TextStyle(
@@ -104,9 +100,7 @@ class CategoryResultSection extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 20),
                                           ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
+                                    kWidth10,
                                     Text(
                                       '₹${category.orginalPrice}',
                                       style: const TextStyle(
@@ -121,11 +115,10 @@ class CategoryResultSection extends StatelessWidget {
                                 kHeight10,
                                 GetBuilder<CartController>(
                                   init: CartController(),
-                                  initState: (_) {},
                                   builder: (cartController) {
                                     return Container(
-                                        height: 30,
-                                        width: 100,
+                                        height: size!.height * 0.036,
+                                        width: size!.width * 0.255,
                                         decoration: BoxDecoration(
                                             color: kLoginBlue,
                                             borderRadius: kBRadius30),

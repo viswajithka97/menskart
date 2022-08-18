@@ -20,7 +20,7 @@ class PaymentController extends GetxController {
   }
 
   void openCheckout() async {
-    print('openCheckout');
+
     var options = {
       'key': 'rzp_test_SaEo53N8HkIN5i',
       'amount': int.parse(totalPrice.toString()) * 100,
@@ -79,14 +79,11 @@ class PaymentController extends GetxController {
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    print('Payment Error');
-    print(response.code.toString());
-    print(response.message);
+  
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
-    print('External Wallet');
-    print(response.walletName);
+
   }
 
   @override

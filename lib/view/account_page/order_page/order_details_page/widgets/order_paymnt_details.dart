@@ -25,12 +25,12 @@ class OrderPaymentDetails extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Payment Method',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style:  TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Text(order!.paymentMethode,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                     )),
               ],
@@ -41,10 +41,10 @@ class OrderPaymentDetails extends StatelessWidget {
             color: kBlack,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 10.0),
+            padding: const EdgeInsets.only(left: 10.0),
             child: Text(
               '${order!.user}\nHouse No: ${address!.houseNo}\n${address.address} \n${address.city}\n${address.state} - ${address.pincode}\nPhone: +91 ${address.mobile}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
               ),
             ),

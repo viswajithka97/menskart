@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:menskart/view/core/color_constants.dart';
-import 'package:timeline_tile/timeline_tile.dart';
 
 class ContainerButton extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables

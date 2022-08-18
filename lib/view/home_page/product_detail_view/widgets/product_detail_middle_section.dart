@@ -30,9 +30,14 @@ class ProductDetailMiddleSection extends StatelessWidget {
                   child: IconButton(
                       onPressed: () {
                         controller.addToWishlist(category.id);
+                        controller.update();
                       },
                       icon: controller.isAdded == null
-                          ? const CircularProgressIndicator()
+                          ? const Icon(
+                              Icons.favorite_border,
+                              color: Colors.red,
+                              size: 30,
+                            )
                           : controller.isAdded == true
                               ? const Icon(
                                   Icons.favorite,

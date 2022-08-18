@@ -1,8 +1,4 @@
-// To parse this JSON data, do
-//
-//     final viewCartModel = viewCartModelFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 ViewCartModel viewCartModelFromJson(String str) => ViewCartModel.fromJson(json.decode(str));
