@@ -55,19 +55,8 @@ class LocationFetch extends StatelessWidget {
                                   );
                                 }),
                           ),
-                          // actions: [
-                          //   FlatButton(
-                          //     onPressed: () {
-                          //       Get.back();
-                          //     },
-                          //     child: const Text('OK'),
-                          //   )
-                          // ],
                         ),
                       );
-
-                      // controller.update();
-                      // Get.back();
                     },
                     icon: const Icon(Icons.save))
               ],
@@ -85,12 +74,16 @@ class LocationFetch extends StatelessWidget {
                 googleMapController = controller;
               },
             ),
-            floatingActionButton: FloatingActionButton.extended(
-              onPressed: () async {
-                controller.getCurrentLocation();
-              },
-              label: const Text('Current Location'),
-              icon: const Icon(Icons.location_on_outlined),
+            floatingActionButton: Align(
+              alignment: Alignment.bottomCenter,
+              child: FloatingActionButton(
+                onPressed: () async {
+                  controller.getCurrentLocation();
+                },
+
+                child: const Icon(Icons.location_on_outlined),
+           
+              ),
             ),
           );
         });

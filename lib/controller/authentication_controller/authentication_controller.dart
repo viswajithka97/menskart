@@ -33,7 +33,7 @@ class AuthenticationController extends GetxController {
               duration: const Duration(seconds: 3));
           final sharedPrefs = await SharedPreferences.getInstance();
           sharedPrefs.setString(loginKey, data.response.user.id);
-       
+
           log('==============user login success==================');
           isLoading.value = false;
           update();

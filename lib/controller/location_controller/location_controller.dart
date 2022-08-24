@@ -30,7 +30,7 @@ class LocationController extends GetxController {
       googleMapController.animateCamera(CameraUpdate.newCameraPosition(
           CameraPosition(
               target: LatLng(position.latitude, position.longitude),
-              zoom: 14.0)));
+              zoom: 20.0)));
       markers.clear();
       markers.add(Marker(
           markerId: const MarkerId('Current Location'),
